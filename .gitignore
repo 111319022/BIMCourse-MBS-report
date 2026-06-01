@@ -1,0 +1,18 @@
+# 課程其他作業與筆記（與 MBS 網站無關）
+*.docx
+*.pdf
+
+# 舊版單頁備份
+MBS期末報告_滴滴滴.html
+MBS期末報告_滴滴滴_backup.html
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo

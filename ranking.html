@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>最終排名 · 滴滴滴 MBS</title>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="nav-content">
+    <div class="nav-brand"><i class="ph-fill ph-trophy" style="color:var(--amber)"></i> 滴滴滴 · MBS</div>
+    <div class="nav-links">
+      <a href="index.html" data-page="index">首頁</a>
+      <a href="ranking.html" data-page="ranking">排名</a>
+      <a href="journey.html" data-page="journey">十期歷程</a>
+      <a href="strategy.html" data-page="strategy">策略解析</a>
+      <a href="analysis.html" data-page="analysis">分析</a>
+      <a href="conclusion.html" data-page="conclusion">結論</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner fade-in">
+    <h1><i class="ph-fill ph-ranking" style="color:var(--amber);margin-right:10px"></i>最終排名</h1>
+    <p>依 NPV 凈現值排序 · 折現率 8% · 共 7 組完賽，3 組破產</p>
+  </div>
+</div>
+
+<section>
+  <div class="chart-container fade-in">
+    <h3>各組 NPV 凈現值比較</h3>
+    <div class="chart-wrap"><canvas id="npvChart"></canvas></div>
+  </div>
+
+  <div class="rank-table-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>排名 · 隊名</th>
+          <th>NPV 凈現值</th>
+          <th>平均每期凈利</th>
+          <th>最終業主權益</th>
+          <th>平均銷售量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><span class="rank-num rank-1">1</span><strong>滴滴滴</strong></td>
+          <td class="positive">$2,740,705</td><td class="positive">$236,098</td>
+          <td class="positive">$9,461,087</td><td>578,337</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-2">2</span>只想單排</td>
+          <td class="positive">$2,400,159</td><td class="positive">$196,792</td>
+          <td>$9,067,931</td><td>383,826</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-3">3</span>Dont Boken company</td>
+          <td class="positive">$329,628</td><td class="negative">-$24,481</td>
+          <td>$6,855,136</td><td>377,567</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-other">4</span>康波尼</td>
+          <td class="negative">-$1,202,582</td><td class="negative">-$239,552</td>
+          <td>$4,704,492</td><td>632,908</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-other">5</span>未命名</td>
+          <td class="negative">-$2,415,391</td><td class="negative">-$388,377</td>
+          <td>$3,216,311</td><td>491,190</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-other">6</span>海空</td>
+          <td class="negative">-$3,164,685</td><td class="negative">-$450,485</td>
+          <td>$2,595,158</td><td>402,984</td>
+        </tr>
+        <tr>
+          <td><span class="rank-num rank-other">7</span>我都可以~</td>
+          <td class="negative">-$3,330,153</td><td class="negative">-$502,578</td>
+          <td>$2,074,240</td><td>479,512</td>
+        </tr>
+        <tr style="opacity:.5">
+          <td><span class="rank-num rank-other">×</span>右轉三次是左轉 <span class="bankrupt-tag">破產</span></td>
+          <td class="negative">—</td><td class="negative">—</td>
+          <td class="negative">-$13,634,423</td><td>—</td>
+        </tr>
+        <tr style="opacity:.5">
+          <td><span class="rank-num rank-other">×</span>我想賺大錢 <span class="bankrupt-tag">破產</span></td>
+          <td class="negative">—</td><td class="negative">—</td>
+          <td class="negative">-$4,333,384</td><td>—</td>
+        </tr>
+        <tr style="opacity:.5">
+          <td><span class="rank-num rank-other">×</span>教經 F3 <span class="bankrupt-tag">破產</span></td>
+          <td class="negative">—</td><td class="negative">—</td>
+          <td class="negative">-$3,896,548</td><td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="section-headline fade-in">
+    <h2 class="section-title">平均投資策略比較</h2>
+    <p class="section-subtitle">各組 10 期平均每期研發、行銷、維護費用對比</p>
+  </div>
+
+  <div class="tab-section fade-in">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('invest',event)">研發／行銷／維護</button>
+      <button class="tab-btn" onclick="switchTab('equity',event)">業主權益</button>
+      <button class="tab-btn" onclick="switchTab('sales',event)">平均銷售量</button>
+    </div>
+    <div id="tab-invest" class="tab-content active">
+      <div class="chart-container"><h3>平均每期研發 / 行銷 / 維護費用</h3>
+        <div class="chart-wrap"><canvas id="investChart"></canvas></div></div>
+    </div>
+    <div id="tab-equity" class="tab-content">
+      <div class="chart-container"><h3>最終業主權益比較</h3>
+        <div class="chart-wrap"><canvas id="equityChart"></canvas></div></div>
+    </div>
+    <div id="tab-sales" class="tab-content">
+      <div class="chart-container"><h3>平均每期銷售量比較</h3>
+        <div class="chart-wrap"><canvas id="salesChart"></canvas></div></div>
+    </div>
+  </div>
+
+  <div class="info-block fade-in" style="margin-top:2rem">
+    <p>
+      <strong>🔑 關鍵洞察：</strong>
+      康波尼平均銷售量 <span class="highlight-text">632,908</span> 件為全場最多，但 NPV 卻只有 <strong style="color:var(--red,#C2432A)">-$1,202,582</strong>。
+      相比滴滴滴用 578,337 件平均銷售量卻達到 NPV $2,740,705。
+      關鍵差距在於：滴滴滴以 <span class="highlight-text">$400k 研發</span> 建立產品形象，維持 $9.00 高定價，毛利率更高。
+      「銷量第一」不等於「盈利第一」。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <strong>滴滴滴</strong> · 114-2 企業創新管理 · MBS Macro Business Simulation · 2026.06.01
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const teams = MBS.rankings.map(r => r.name.replace(' company',''));
+  const npvVals = MBS.rankings.map(r => r.npv);
+  const C = MBS.colors;
+
+  // NPV
+  new Chart(document.getElementById('npvChart'), {
+    type: 'bar', data: {
+      labels: teams,
+      datasets: [{ label: 'NPV', data: npvVals, borderRadius: 6, barPercentage: 0.6,
+        backgroundColor: npvVals.map((v,i) => i===0 ? C.amber : v>=0 ? C.green : C.us) }]
+    },
+    options: { ...makeLineOpts(), indexAxis:'y',
+      scales: { x: { grid:{color:'rgba(60,40,20,0.07)'}, ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'k'} }, y:{grid:{display:false}} },
+      plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>' $'+c.raw.toLocaleString()}} } }
+  });
+
+  // Investment
+  new Chart(document.getElementById('investChart'), {
+    type:'bar', data: {
+      labels: teams,
+      datasets: [
+        { label:'平均研發', data: MBS.rankings.map(r=>r.rd), backgroundColor: C.amber, borderRadius:4 },
+        { label:'平均行銷', data: MBS.rankings.map(r=>r.mkt), backgroundColor: C.us, borderRadius:4 },
+        { label:'平均維護', data: MBS.rankings.map(r=>r.maint), backgroundColor: C.green, borderRadius:4 },
+      ]
+    },
+    options: { ...makeLineOpts(), responsive:true, maintainAspectRatio:false,
+      scales: { y:{grid:{color:'rgba(60,40,20,0.07)'},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'k'}}, x:{grid:{display:false}} },
+      plugins: { legend:{position:'top',labels:{usePointStyle:true,padding:16}},
+        tooltip:{callbacks:{label:c=>' '+c.dataset.label+': $'+c.raw.toLocaleString()}} } }
+  });
+
+  // Equity
+  const eqVals = MBS.rankings.map(r=>r.equity);
+  new Chart(document.getElementById('equityChart'), {
+    type:'bar', data: {
+      labels: teams,
+      datasets: [{ label:'業主權益', data:eqVals, borderRadius:6, barPercentage:0.6,
+        backgroundColor: eqVals.map((_,i)=>i===0?C.amber:C.blue) }]
+    },
+    options: { ...makeLineOpts(), responsive:true, maintainAspectRatio:false,
+      scales: { y:{grid:{color:'rgba(60,40,20,0.07)'},ticks:{callback:v=>'$'+(v/1000000).toFixed(1)+'M'}}, x:{grid:{display:false}} },
+      plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>' $'+c.raw.toLocaleString()}} } }
+  });
+
+  // Sales
+  const sVals = MBS.rankings.map(r=>r.sales);
+  new Chart(document.getElementById('salesChart'), {
+    type:'bar', data: {
+      labels: teams,
+      datasets: [{ label:'平均銷售量', data:sVals, borderRadius:6, barPercentage:0.6,
+        backgroundColor: sVals.map((_,i)=>i===0?C.amber:C.green) }]
+    },
+    options: { ...makeLineOpts(), responsive:true, maintainAspectRatio:false,
+      scales: { y:{grid:{color:'rgba(60,40,20,0.07)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k'}}, x:{grid:{display:false}} },
+      plugins: { legend:{display:false}, tooltip:{callbacks:{label:c=>' '+c.raw.toLocaleString()+' 件'}} } }
+  });
+});
+</script>
+</body>
+</html>

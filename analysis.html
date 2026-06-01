@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>分析 · 滴滴滴 MBS</title>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+<script src="data.js"></script>
+<script src="script.js" defer></script>
+<style>
+  .improve-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--amber);
+    border-radius: var(--radius);
+    padding: 1.8rem 2rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 1.2rem;
+  }
+  .improve-card.serious { border-left-color: var(--brick); }
+  .improve-card h3 {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 17px; font-weight: 700; color: var(--ink);
+    margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px;
+  }
+  .improve-card p, .improve-card li {
+    font-size: 14.5px; color: var(--ink-mid); line-height: 1.75;
+  }
+  .improve-card ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .improve-card li { margin-bottom: 0.4rem; }
+  .loss-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(194,67,42,0.1); color: var(--brick);
+    border: 1px solid rgba(194,67,42,0.25); border-radius: 20px;
+    font-size: 11px; font-weight: 700; padding: 2px 10px; margin-left: 8px; vertical-align: middle;
+  }
+  .gain-tag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(46,94,74,0.1); color: var(--forest);
+    border: 1px solid rgba(46,94,74,0.25); border-radius: 20px;
+    font-size: 11px; font-weight: 700; padding: 2px 10px; margin-left: 8px; vertical-align: middle;
+  }
+  .section-divider {
+    border: none; border-top: 2px solid var(--border-heavy);
+    margin: 4rem 0 3rem;
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-content">
+    <div class="nav-brand"><i class="ph-fill ph-trophy" style="color:var(--amber)"></i> 滴滴滴 · MBS</div>
+    <div class="nav-links">
+      <a href="index.html"      data-page="index">首頁</a>
+      <a href="ranking.html"    data-page="ranking">排名</a>
+      <a href="journey.html"    data-page="journey">十期歷程</a>
+      <a href="strategy.html"   data-page="strategy">策略解析</a>
+      <a href="analysis.html"   data-page="analysis">分析</a>
+      <a href="conclusion.html" data-page="conclusion">結論</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner fade-in">
+    <h1><i class="ph ph-magnifying-glass-plus" style="color:var(--brick);margin-right:10px"></i>深度分析</h1>
+    <p>勝出歸因、競爭者比較、NPV 解讀，以及我們可以做得更好的地方</p>
+  </div>
+</div>
+
+<section>
+
+  <!-- ── PART 1: WHY WE WON ── -->
+  <div class="section-headline fade-in">
+    <h2 class="section-title">為什麼我們贏了？</h2>
+    <p class="section-subtitle">三角策略的正向循環</p>
+  </div>
+
+  <div class="info-block fade-in">
+    <div class="ai-badge"><i class="ph ph-trophy"></i> 勝出歸因</div>
+    <h3>高研發 × 高行銷 × 高定價 — 三角正向循環</h3>
+    <p>
+      MBS 的 NPV 公式懲罰短視行為，獎勵長期穩健。滴滴滴從 P1 就投入 <span class="highlight-text">$400k 研發（全場最高且唯一 10 期不間斷）</span>，
+      建立產品形象護城河，使得在 P6 果斷漲至 $9.00 後市場不流失，反而衝至 16.55% 最高市占。
+    </p>
+    <p>
+      三者形成正向循環：研發 → 產品形象 → 支撐高定價 → 高毛利 → 再投資研發。
+      相比之下，跳出這個循環的組別（高量低利 or 低投入保守）最終都無法達到同等 NPV。
+    </p>
+  </div>
+
+  <div class="info-block fade-in">
+    <div class="ai-badge"><i class="ph ph-users"></i> 競爭者分析</div>
+    <h3>🔍 主要競爭者的失誤模式</h3>
+    <ul>
+      <li><strong>康波尼（第 4 名，NPV -$1.2M）</strong>：行銷最高 $447k，但研發只有 $230k。平均銷量 632,908 件全場最多，卻長期虧損。典型的「量的陷阱」——高行銷帶來訂單，但無研發支撐，無法漲價，陷入高量低利死循環。</li>
+      <li><strong>只想單排（第 2 名，NPV $2.4M）</strong>：策略最保守（研發 $80k、行銷 $121k），雖 10 期多為正獲利，但成長幅度受限，最終 NPV 與我們差距 $340k。<strong>過度節省也是一種失策。</strong></li>
+      <li><strong>破產組共同特徵</strong>：前期大量設備或庫存投資、定價策略混亂、缺乏研發積累，導致固定成本吃掉所有利潤，業主權益螺旋式下滑至破產。</li>
+    </ul>
+  </div>
+
+  <div class="info-block fade-in">
+    <div class="ai-badge"><i class="ph ph-formula"></i> NPV 解讀</div>
+    <h3>🧮 NPV $2,740,705 怎麼來的</h3>
+    <div style="background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;margin:1rem 0;font-family:monospace;font-size:13.5px;color:var(--ink);line-height:2">
+      NPV = Σ（第 i 期股利 / (1+0.08/4)^i）<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ （末期股利 + 末期業主權益）/ (1+0.08/4)^10<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;− 期初業主權益<br><br>
+      末期業主權益 $9,461,087（全場最高）→ 最大 NPV 貢獻來源<br>
+      P3–P10 連續正獲利 → 每期累計正折現值<br>
+      P1–P2 虧損 -$443k → 前期折現損失，但換取後期獲利基礎
+    </div>
+    <p>
+      我們業主權益高達 $9,461,087 是 NPV 最大貢獻來源。而 10 期中 8 期獲利確保每期折現值幾乎全正，
+      沒有像其他組那樣長期虧損被折現放大懲罰。
+    </p>
+  </div>
+
+  <div class="info-block fade-in">
+    <div class="ai-badge"><i class="ph ph-globe"></i> 環境因素</div>
+    <h3>🌍 競賽環境如何配合我們的策略</h3>
+    <ul>
+      <li><strong>價格彈性低</strong>：四市場均為低彈性，這正是我們能在 P6 大幅漲價而不流失市場的關鍵前提。若彈性高，$9.00 策略可能會徹底失敗。</li>
+      <li><strong>通貨膨脹幅度大</strong>：物價指數 130.4，成本不斷上漲。高定價策略有效轉嫁通膨壓力，低定價組則被侵蝕毛利。</li>
+      <li><strong>市場高成長</strong>：四大市場均處高成長期，整體需求擴大，使研發的市場潛能提升效果更為顯著。</li>
+    </ul>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── PART 2: WHERE WE COULD IMPROVE ── -->
+  <div class="section-headline fade-in">
+    <h2 class="section-title" style="color:var(--brick)">我們可以做得更好的地方</h2>
+    <p class="section-subtitle">即使拿到第一名，回顧 10 期決策仍有明顯的失誤與遺漏</p>
+  </div>
+
+  <!-- 1. P9 inventory -->
+  <div class="improve-card serious fade-in">
+    <h3>
+      <i class="ph-fill ph-warning" style="color:var(--brick)"></i>
+      第 9 期庫存管理失誤
+      <span class="loss-tag">影響最大</span>
+    </h3>
+    <p>
+      第 9 期需求超出預期，導致<strong>庫存在期末歸零</strong>。根據 MBS 規則：
+    </p>
+    <ul>
+      <li>期末製成品存貨 = 期初庫存 + 當期生產量 − 當期銷售量</li>
+      <li>庫存歸零代表<strong>第 10 期期初存貨為 0</strong>，完全依賴當期生產量供貨</li>
+      <li>但 P10 的產能受 P9 設備投資限制，無法在一期內大幅擴產</li>
+    </ul>
+    <p style="margin-top:.8rem">
+      <strong>結果</strong>：第 10 期雖然市占率 14.5%，但收入從 P9 的 $5,905,116 下滑至 $5,760,000，
+      且凈利僅剩 $86,635（vs P9 的 $545,052）。
+      若 P9 末能保留至少 50,000–100,000 件庫存，P10 可多貢獻約 $450k–$900k 收入，凈利估計可再增加 $150k–$300k。
+    </p>
+    <p style="margin-top:.8rem;font-weight:600;color:var(--brick)">
+      改進方案：P8 或 P9 計畫生產量應多備 10–15% 安全庫存，寧願多生產也不要缺貨。
+    </p>
+  </div>
+
+  <!-- 2. P10 equipment timing -->
+  <div class="improve-card serious fade-in">
+    <h3>
+      <i class="ph-fill ph-wrench" style="color:var(--brick)"></i>
+      第 10 期設備投資 $800k 時機錯誤
+      <span class="loss-tag">資金浪費</span>
+    </h3>
+    <p>
+      MBS 規則明確指出：<strong>設備投資效果在下一期才顯現</strong>（每投資 $20 增加下期 1 單位產能）。
+      我們在最後一期（P10）投入 $800k 設備費，但此次競賽 P10 是最後一期，根本沒有「下一期」可以使用這新增的產能。
+    </p>
+    <ul>
+      <li>$800k 設備投資 → 可增加約 40,000 單位產能，但都在 P11（不存在）</li>
+      <li>設備費直接計入損益表的「設備投資費用」（公式：0.0000001 × 投資額²），$800k 造成費用 $64,000</li>
+      <li>雖然設備資產留在資產負債表增加業主權益，但如果提前在 P8 或 P9 投入，可以<strong>實際用於生產更多商品獲利</strong></li>
+    </ul>
+    <p style="margin-top:.8rem;font-weight:600;color:var(--brick)">
+      改進方案：設備大幅投資應在 P7–P8 執行，讓 P8–P9 就能享受更大產能，直接轉化為銷售收入。
+    </p>
+  </div>
+
+  <!-- 3. Southeast Asia underinvestment -->
+  <div class="improve-card fade-in">
+    <h3>
+      <i class="ph-fill ph-map-pin" style="color:var(--amber)"></i>
+      東南亞市場長期行銷投資不足
+      <span class="gain-tag">可提升空間</span>
+    </h3>
+    <p>
+      從 P6 起，東南亞行銷預算僅 $40k（P6–P8）、$80k（P9–P10），
+      而其他三個市場均維持 $130k。
+      最終東南亞市場僅有：
+    </p>
+    <ul>
+      <li>末期市占率 <strong>12.88%</strong>（四市場最低，低於東北亞日韓的 15.21% 和大陸港澳的 18.66%）</li>
+      <li>末期銷售量 <strong>120,000 件</strong>（四市場最少）</li>
+    </ul>
+    <p style="margin-top:.8rem">
+      東南亞雖然產品生命週期高成長，但行銷遞延效果需要持續投入才能積累。
+      若 P6 起東南亞行銷也維持 $130k（多投入 $270k 共 6 期），
+      按行銷影響估算，市占率可能提升 2–3 個百分點，末期銷售量增加約 20,000–30,000 件。
+    </p>
+    <p style="margin-top:.8rem;font-weight:600;color:var(--amber)">
+      改進方案：四市場行銷預算應保持一致 $130k，東南亞不應差別對待。
+    </p>
+  </div>
+
+  <!-- 4. Pricing pivot timing -->
+  <div class="improve-card fade-in">
+    <h3>
+      <i class="ph-fill ph-clock-countdown" style="color:var(--amber)"></i>
+      定價轉換時機可以更早（P5 就能漲至 $9.00）
+      <span class="gain-tag">機會損失</span>
+    </h3>
+    <p>
+      我們在 P5 已獲利 <strong>$582,019</strong>，代表產品形象已足夠強大支撐高定價。
+      但我們等到 P6 才漲至 $9.00，錯失了 P5 用更高定價獲利的機會。
+    </p>
+    <ul>
+      <li>P5 實際平均定價：$8.01，收入 $5,036,040</li>
+      <li>若 P5 定價 $9.00，以相近銷售量估算，收入約可增加 $500k–$800k</li>
+      <li>對應凈利增加估計 $200k–$350k，NPV 貢獻（折現後）約 +$150k–$250k</li>
+    </ul>
+    <p style="margin-top:.8rem;font-weight:600;color:var(--amber)">
+      改進方案：更積極監測每期獲利趨勢，一旦連續 2 期獲利且市占穩定，就應考慮提前拉高定價。
+    </p>
+  </div>
+
+  <!-- 5. P1 marketing allocation -->
+  <div class="improve-card fade-in">
+    <h3>
+      <i class="ph-fill ph-chart-bar" style="color:var(--amber)"></i>
+      第 1 期行銷配置與市場潛力不符
+      <span class="gain-tag">策略優化</span>
+    </h3>
+    <p>
+      第 1 期行銷預算分配：本地 $100k、東北亞 $130k、大陸港澳 $130k、<strong>東南亞 $190k（最高）</strong>。
+      但整個競賽期間，東南亞反而是我們最弱的市場（最終市占 12.88%）；大陸港澳則成為最強的市場（18.66%）。
+    </p>
+    <ul>
+      <li>P1 東南亞行銷偏重，遞延效果在後期形成錯誤的「形象基底」</li>
+      <li>大陸港澳市場生命週期高成長，早期應投入更多行銷搶占先機</li>
+    </ul>
+    <p style="margin-top:.8rem;font-weight:600;color:var(--amber)">
+      改進方案：P1 就應依市場成長指數（大陸港澳 1.40 > 東北亞 1.38 > 本地 1.44 > 東南亞 1.32）
+      分配行銷預算優先順序，而非憑感覺或直覺配置。
+    </p>
+  </div>
+
+  <!-- Summary of improvement impact -->
+  <div class="chart-container fade-in" style="margin-top:2rem">
+    <h3>改進項目預估 NPV 增益彙整</h3>
+    <div class="chart-wrap" style="height:300px"><canvas id="improveChart"></canvas></div>
+  </div>
+
+</section>
+
+<footer>
+  <strong>滴滴滴</strong> · 114-2 企業創新管理 · MBS · 2026.06.01
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  new Chart(document.getElementById('improveChart'), {
+    type: 'bar',
+    data: {
+      labels: [
+        'P9 庫存管理\n（P10 凈利損失）',
+        'P10 設備投資\n提前至 P8',
+        '東南亞行銷\n補足 $130k',
+        'P5 提早漲價\n至 $9.00',
+        'P1 行銷\n配置優化'
+      ],
+      datasets: [{
+        label: '估算 NPV 增益',
+        data: [200000, 120000, 80000, 200000, 50000],
+        backgroundColor: ['#C2432A','#C2432A','#D4880A','#D4880A','#8C7B68'],
+        borderRadius: 6, barPercentage: 0.6
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => ' 估算增益: +$' + c.raw.toLocaleString() } }
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+        y: {
+          grid: { color: 'rgba(60,40,20,0.07)' },
+          ticks: { callback: v => '+$' + (v/1000).toFixed(0) + 'k' },
+          title: { display: true, text: '估算 NPV 增益 ($)', color: '#8C7B68', font: { size: 11 } }
+        }
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
