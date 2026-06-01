@@ -1,6 +1,6 @@
 # 🏆 MBS 商業模擬競賽成果報告 — 滴滴滴
 
-**114-2 企業創新管理（通識課）· 國立臺灣大學 · 2026 春季**  
+**114-2 企業創新管理· NTUE · 通識課 · 2026 春季**  
 MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽，**滴滴滴以 NPV 第一名完賽**。
 
 ---
@@ -72,6 +72,6 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ## 🏫 課程資訊
 
-- **課程**：企業創新管理（Business Innovation Management）— 臺大通識課，114-2 學期
+- **課程**：企業創新管理（Business Innovation Management）— NTUE通識課，114學年-下學期
 - **模擬系統**：MBS Level-2，由 [Top-BOSS](https://mbs.top-boss.com) 開發
 - **參賽隊名**：滴滴滴
