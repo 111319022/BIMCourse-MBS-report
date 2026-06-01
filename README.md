@@ -1,17 +1,17 @@
-# 🏆 MBS 商業模擬競賽成果報告 — 滴滴滴
+# MBS 商業模擬競賽成果報告 — 滴滴滴
 
 **114-2 企業創新管理· NTUE · 通識課 · 2026 春季**  
 MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽，**滴滴滴以 NPV 第一名完賽**。
 
 ---
 
-## 🌐 線上瀏覽
+## 線上瀏覽
 
 > [https://111319022.github.io/BIMCourse-MBS-report](https://111319022.github.io/BIMCourse-MBS-report)
 
 ---
 
-## 📊 最終成績
+## 最終成績
 
 | 指標 | 數值 |
 |---|---|
@@ -25,7 +25,7 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ---
 
-## 📁 網站結構
+## 網站結構
 
 | 頁面 | 內容 |
 |---|---|
@@ -38,7 +38,7 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ---
 
-## 💡 致勝策略
+## 致勝策略
 
 核心三角策略形成正向循環：
 
@@ -50,7 +50,7 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ---
 
-## 🔍 可以做得更好的地方
+## 可以做得更好的地方
 
 - **第 9 期庫存歸零**：需求超出預期，末期庫存燒光，第 10 期期初無緩衝庫存，壓縮最終獲利
 - **第 10 期設備投資 $800k 時機錯誤**：設備效果遞延至下一期，競賽已結束，等同資金浪費
@@ -59,7 +59,7 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ---
 
-## 🛠 技術規格
+## 技術規格
 
 - **圖表**：[Chart.js 4.4.1](https://www.chartjs.org/)
 - **圖示**：[Phosphor Icons](https://phosphoricons.com/)
@@ -70,7 +70,7 @@ MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽
 
 ---
 
-## 🏫 課程資訊
+## 課程資訊
 
 - **課程**：企業創新管理（Business Innovation Management）— NTUE通識課，114學年-下學期
 - **模擬系統**：MBS Level-2，由 [Top-BOSS](https://mbs.top-boss.com) 開發

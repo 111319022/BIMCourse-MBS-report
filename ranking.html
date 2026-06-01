@@ -132,7 +132,7 @@
 
   <div class="info-block fade-in" style="margin-top:2rem">
     <p>
-      <strong>🔑 關鍵洞察：</strong>
+      <strong>◆ 關鍵洞察：</strong>
       康波尼平均銷售量 <span class="highlight-text">632,908</span> 件為全場最多，但 NPV 卻只有 <strong style="color:var(--red,#C2432A)">-$1,202,582</strong>。
       相比滴滴滴用 578,337 件平均銷售量卻達到 NPV $2,740,705。
       關鍵差距在於：滴滴滴以 <span class="highlight-text">$400k 研發</span> 建立產品形象，維持 $9.00 高定價，毛利率更高。
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type: 'bar', data: {
       labels: teams,
       datasets: [{ label: 'NPV', data: npvVals, borderRadius: 6, barPercentage: 0.6,
-        backgroundColor: npvVals.map((v,i) => i===0 ? C.amber : v>=0 ? C.green : C.us) }]
+        backgroundColor: npvVals.map((v,i) => i===0 ? C.us : v>=0 ? C.green : C.red) }]
     },
     options: { ...makeLineOpts(), indexAxis:'y',
       scales: { x: { grid:{color:'rgba(60,40,20,0.07)'}, ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'k'} }, y:{grid:{display:false}} },
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type:'bar', data: {
       labels: teams,
       datasets: [{ label:'業主權益', data:eqVals, borderRadius:6, barPercentage:0.6,
-        backgroundColor: eqVals.map((_,i)=>i===0?C.amber:C.blue) }]
+        backgroundColor: eqVals.map((_,i)=>i===0?C.us:C.blue) }]
     },
     options: { ...makeLineOpts(), responsive:true, maintainAspectRatio:false,
       scales: { y:{grid:{color:'rgba(60,40,20,0.07)'},ticks:{callback:v=>'$'+(v/1000000).toFixed(1)+'M'}}, x:{grid:{display:false}} },
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     type:'bar', data: {
       labels: teams,
       datasets: [{ label:'平均銷售量', data:sVals, borderRadius:6, barPercentage:0.6,
-        backgroundColor: sVals.map((_,i)=>i===0?C.amber:C.green) }]
+        backgroundColor: sVals.map((_,i)=>i===0?C.us:C.green) }]
     },
     options: { ...makeLineOpts(), responsive:true, maintainAspectRatio:false,
       scales: { y:{grid:{color:'rgba(60,40,20,0.07)'},ticks:{callback:v=>(v/1000).toFixed(0)+'k'}}, x:{grid:{display:false}} },
