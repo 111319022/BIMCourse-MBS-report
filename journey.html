@@ -26,7 +26,8 @@
 
 <div class="page-header">
   <div class="page-header-inner fade-in">
-    <h1><i class="ph ph-chart-line" style="color:var(--brick);margin-right:10px"></i>十期成長歷程</h1>
+    <div class="page-header-eyebrow"><i class="ph ph-chart-line-up"></i> 經營歷程</div>
+    <h1>十期成長歷程</h1>
     <p>從期 1 虧損 $382k 到穩定盈利的完整軌跡 — 損益、收益與市占率全程走勢</p>
   </div>
 </div>
@@ -111,21 +112,28 @@ document.addEventListener('DOMContentLoaded', () => {
       const {ctx, scales:{x, y}} = chart;
       const p6 = x.getPixelForValue('P6');
       ctx.save();
-      ctx.strokeStyle = 'rgba(194,67,42,0.35)';
+      ctx.strokeStyle = 'rgba(196,70,43,0.4)';
       ctx.lineWidth = 1.5;
-      ctx.setLineDash([4,4]);
-      ctx.beginPath(); ctx.moveTo(p6, y.top); ctx.lineTo(p6, y.bottom); ctx.stroke();
-      ctx.fillStyle = 'rgba(194,67,42,0.8)';
-      ctx.font = '11px "Noto Sans TC",sans-serif';
+      ctx.setLineDash([5,4]);
+      ctx.beginPath(); ctx.moveTo(p6, y.top + 8); ctx.lineTo(p6, y.bottom); ctx.stroke();
+      ctx.setLineDash([]);
+      /* Label inside chart near bottom to avoid legend overlap */
+      const labelY = y.bottom - 16;
+      ctx.fillStyle = 'rgba(196,70,43,0.15)';
+      ctx.beginPath();
+      ctx.roundRect(p6 - 34, labelY - 14, 68, 22, 4);
+      ctx.fill();
+      ctx.fillStyle = '#C4462B';
+      ctx.font = '600 11px "Noto Sans TC",sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('定價轉折', p6, y.top - 6);
+      ctx.fillText('▲ 定價轉折', p6, labelY);
       ctx.restore();
     }
   };
 
   // ── Profit trend ──
   const profitTeams = ['滴滴滴','只想單排','康波尼','海空'];
-  const profitColors = [C.us, C.green, C.blue, C.gray];
+  const profitColors = [C.us, C.green, C.orange, C.gray];
   const profitDatasets = profitTeams.map((t,i) => ({
     label: t, data: MBS.profit[t] || MBS.profit['海空'],
     borderColor: profitColors[i],

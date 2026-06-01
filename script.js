@@ -16,13 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── 3. Chart.js global defaults ──────────────────────
   if (window.Chart) {
     Chart.defaults.color = '#7A8A9A';
-    Chart.defaults.borderColor = 'rgba(60,40,20,0.07)';
+    Chart.defaults.borderColor = 'rgba(27,42,74,0.07)';
     Chart.defaults.font.family = '"Noto Sans TC","Microsoft JhengHei",sans-serif';
-    Chart.defaults.plugins.tooltip.padding = 10;
-    Chart.defaults.plugins.tooltip.cornerRadius = 8;
-    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(30,22,13,0.88)';
-    Chart.defaults.plugins.tooltip.titleColor = '#F7F3EC';
-    Chart.defaults.plugins.tooltip.bodyColor = '#C4B8AA';
+    Chart.defaults.font.size = 13;
+    Chart.defaults.plugins.tooltip.padding = 14;
+    Chart.defaults.plugins.tooltip.cornerRadius = 10;
+    Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(13,21,32,0.92)';
+    Chart.defaults.plugins.tooltip.titleColor = '#F5F0E8';
+    Chart.defaults.plugins.tooltip.bodyColor = '#B0BEC8';
+    Chart.defaults.plugins.tooltip.titleFont = { size: 13, weight: '600' };
+    Chart.defaults.plugins.tooltip.bodyFont = { size: 13 };
+    Chart.defaults.plugins.legend.labels.font = { size: 13 };
+    Chart.defaults.scale.ticks.font = { size: 12 };
+    Chart.defaults.plugins.legend.labels.boxWidth = 12;
+    Chart.defaults.plugins.legend.labels.padding = 18;
   }
 });
 

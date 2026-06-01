@@ -67,10 +67,10 @@ const MBS = {
   // 色票
   colors: {
     us:     '#1B2A4A',   /* 墨藍 — 滴滴滴 primary */
-    green:  '#1E4D3A',
-    blue:   '#3A5F8A',
-    purple: '#7B4F9E',
-    gray:   '#8A9AAA',
+    green:  '#2E8B57',   /* 海藻綠 — 只想單排 (bright, distinct) */
+    blue:   '#3A5F8A',   /* 天藍 — misc */
+    orange: '#B05000',   /* 橙棕 — 康波尼 (very distinct from navy) */
+    gray:   '#9A9A9A',   /* 中灰 — 海空 */
     amber:  '#8B6914',   /* 銅金 */
     red:    '#C4462B',   /* 硃砂紅 — negative values */
     ink:    '#0D1520',

@@ -26,7 +26,8 @@
 
 <div class="page-header">
   <div class="page-header-inner fade-in">
-    <h1><i class="ph ph-target" style="color:var(--brick);margin-right:10px"></i>策略解析</h1>
+    <div class="page-header-eyebrow"><i class="ph ph-target"></i> 決策分析</div>
+    <h1>策略解析</h1>
     <p>低價投資奠基 → 強勢高定價收割 · 10 期決策完整解析</p>
   </div>
 </div>
@@ -116,10 +117,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const {ctx,scales:{x,y}} = chart;
       const px = x.getPixelForValue('P6');
       ctx.save();
-      ctx.strokeStyle='rgba(194,67,42,0.4)'; ctx.lineWidth=1.5; ctx.setLineDash([4,4]);
-      ctx.beginPath(); ctx.moveTo(px,y.top); ctx.lineTo(px,y.bottom); ctx.stroke();
-      ctx.fillStyle='rgba(194,67,42,0.85)'; ctx.font='11px "Noto Sans TC",sans-serif'; ctx.textAlign='center';
-      ctx.fillText('$9.00 轉折', px, y.top-6); ctx.restore();
+      ctx.strokeStyle='rgba(196,70,43,0.4)'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+      ctx.beginPath(); ctx.moveTo(px,y.top+8); ctx.lineTo(px,y.bottom); ctx.stroke();
+      ctx.setLineDash([]);
+      const labelY = y.bottom - 16;
+      ctx.fillStyle='rgba(196,70,43,0.15)';
+      if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(px-42,labelY-14,84,22,4); ctx.fill(); }
+      ctx.fillStyle='#C4462B'; ctx.font='600 11px "Noto Sans TC",sans-serif'; ctx.textAlign='center';
+      ctx.fillText('▲ $9.00 轉折', px, labelY); ctx.restore();
     }
   };
 
