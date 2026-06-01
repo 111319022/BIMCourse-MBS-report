@@ -68,7 +68,9 @@ nav {
   font-weight: 700; font-size: 17px; color: var(--ink);
   display: flex; align-items: center; gap: 10px;
   letter-spacing: 0.02em;
+  text-decoration: none;
 }
+.nav-brand:hover { color: var(--ink); }
 .nav-links a {
   font-size: 14px; font-weight: 500; color: var(--ink-muted);
   text-decoration: none; margin-left: 28px;
