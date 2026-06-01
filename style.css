@@ -3,12 +3,12 @@
 
 /* ── Design tokens ── */
 :root {
-  --bg:           #F5F0E8;
-  --bg-warm:      #EDE8DF;
-  --surface:      #FDFAF5;
-  --surface-2:    #EDE8DF;
-  --border:       rgba(27, 42, 74, 0.11);
-  --border-heavy: rgba(27, 42, 74, 0.20);
+  --bg:           #F6F6F4;
+  --bg-warm:      #EDEDEB;
+  --surface:      #FFFFFF;
+  --surface-2:    #EDEDEB;
+  --border:       rgba(28, 28, 28, 0.10);
+  --border-heavy: rgba(28, 28, 28, 0.18);
   --ink:          #0D1520;
   --ink-mid:      #2A3850;
   --ink-muted:    #7A8A9A;
@@ -23,8 +23,8 @@
   --gold:         #8B6914;
   --radius:       16px;
   --radius-sm:    10px;
-  --shadow-sm:    0 2px 8px rgba(27,42,74,0.07);
-  --shadow-md:    0 6px 24px rgba(27,42,74,0.10);
+  --shadow-sm:    0 2px 8px rgba(28,28,28,0.08);
+  --shadow-md:    0 6px 24px rgba(28,28,28,0.11);
 }
 
 /* ── Reset & base ── */
@@ -53,7 +53,7 @@ body {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   height: 64px;
-  background: rgba(245,240,232,0.93);
+  background: rgba(246,246,244,0.93);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-heavy);
@@ -406,16 +406,14 @@ td.negative { color: var(--brick); }
 
 /* ── Page header (non-index pages) ── */
 .page-header {
-  background: var(--surface-2);
-  border-top: 3px solid var(--navy);
-  border-bottom: 1px solid var(--border);
-  padding: 5rem 2.5rem 4rem;
+  background: var(--bg);
+  padding: 5rem 2.5rem 0;
   margin-bottom: 0;
 }
 .page-header-inner { max-width: 1100px; margin: 0 auto; }
 .page-header-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 700; color: var(--navy);
+  font-size: 12px; font-weight: 600; color: var(--ink-muted);
   text-transform: uppercase; letter-spacing: 0.14em;
   margin-bottom: 1.2rem;
 }
