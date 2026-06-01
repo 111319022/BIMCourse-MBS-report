@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── 3. Chart.js global defaults ──────────────────────
   if (window.Chart) {
-    Chart.defaults.color = '#8C7B68';
+    Chart.defaults.color = '#7A8A9A';
     Chart.defaults.borderColor = 'rgba(60,40,20,0.07)';
     Chart.defaults.font.family = '"Noto Sans TC","Microsoft JhengHei",sans-serif';
     Chart.defaults.plugins.tooltip.padding = 10;

@@ -66,13 +66,13 @@ const MBS = {
 
   // 色票
   colors: {
-    us:     '#C2432A',
-    green:  '#2E5E4A',
-    blue:   '#3A6FA8',
+    us:     '#1B2A4A',   /* 墨藍 — 滴滴滴 primary */
+    green:  '#1E4D3A',
+    blue:   '#3A5F8A',
     purple: '#7B4F9E',
-    gray:   '#9E9085',
-    amber:  '#D4880A',
-    brown:  '#A07840',
-    ink:    '#1E160D',
+    gray:   '#8A9AAA',
+    amber:  '#8B6914',   /* 銅金 */
+    red:    '#C4462B',   /* 硃砂紅 — negative values */
+    ink:    '#0D1520',
   }
 };

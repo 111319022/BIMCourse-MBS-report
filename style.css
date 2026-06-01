@@ -3,27 +3,28 @@
 
 /* ── Design tokens ── */
 :root {
-  --bg:           #F7F3EC;
-  --bg-warm:      #F0EAE0;
-  --surface:      #FFFCF7;
-  --surface-2:    #F5F0E8;
-  --border:       rgba(60, 40, 20, 0.12);
-  --border-heavy: rgba(60, 40, 20, 0.22);
-  --ink:          #1E160D;
-  --ink-mid:      #4A3A2B;
-  --ink-muted:    #8C7B68;
-  --brick:        #C2432A;    /* primary accent */
-  --brick-light:  #E8604A;
-  --forest:       #2E5E4A;    /* secondary accent */
-  --amber:        #D4880A;    /* gold / first-place */
-  --amber-light:  #F0A500;
-  --sky:          #3A6FA8;    /* chart blue */
-  --accent:       #C2432A;   /* alias for inline style="color:var(--accent)" */
-  --gold:         #D4880A;   /* alias for hero badge gold class */
+  --bg:           #F5F0E8;
+  --bg-warm:      #EDE8DF;
+  --surface:      #FDFAF5;
+  --surface-2:    #EDE8DF;
+  --border:       rgba(27, 42, 74, 0.11);
+  --border-heavy: rgba(27, 42, 74, 0.20);
+  --ink:          #0D1520;
+  --ink-mid:      #2A3850;
+  --ink-muted:    #7A8A9A;
+  --brick:        #C4462B;    /* 硃砂紅 accent */
+  --brick-light:  #E05A3A;
+  --forest:       #1E4D3A;    /* positive green */
+  --amber:        #8B6914;    /* 銅金 */
+  --amber-light:  #A87B1C;
+  --sky:          #3A5F8A;    /* chart blue */
+  --navy:         #1B2A4A;    /* 墨藍 — main brand color */
+  --accent:       #C4462B;
+  --gold:         #8B6914;
   --radius:       16px;
   --radius-sm:    10px;
-  --shadow-sm:    0 2px 8px rgba(60,40,20,0.08);
-  --shadow-md:    0 6px 24px rgba(60,40,20,0.10);
+  --shadow-sm:    0 2px 8px rgba(27,42,74,0.07);
+  --shadow-md:    0 6px 24px rgba(27,42,74,0.10);
 }
 
 /* ── Reset & base ── */
@@ -49,8 +50,8 @@ body {
 /* ── Navigation ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: 52px;
-  background: rgba(247,243,236,0.88);
+  height: 64px;
+  background: rgba(245,240,232,0.93);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-heavy);
@@ -58,22 +59,22 @@ nav {
 .nav-content {
   max-width: 1080px; margin: 0 auto;
   height: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 .nav-brand {
   font-family: 'Noto Serif TC', serif;
-  font-weight: 700; font-size: 14px; color: var(--ink);
-  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 17px; color: var(--ink);
+  display: flex; align-items: center; gap: 10px;
   letter-spacing: 0.02em;
 }
 .nav-links a {
-  font-size: 12px; font-weight: 500; color: var(--ink-muted);
-  text-decoration: none; margin-left: 24px;
+  font-size: 14px; font-weight: 500; color: var(--ink-muted);
+  text-decoration: none; margin-left: 28px;
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--brick); }
-.nav-links a.active { color: var(--brick); font-weight: 700; border-bottom: 2px solid var(--brick); padding-bottom: 2px; }
+.nav-links a:hover { color: var(--navy); }
+.nav-links a.active { color: var(--navy); font-weight: 700; border-bottom: 2px solid var(--navy); padding-bottom: 2px; }
 
 /* ── Layout ── */
 section {
@@ -104,7 +105,7 @@ section:last-of-type { border-bottom: none; }
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   text-align: center;
-  padding: 7rem 2rem 5rem;
+  padding: 8rem 2rem 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -125,7 +126,7 @@ section:last-of-type { border-bottom: none; }
   font-weight: 700; font-size: 13px; letter-spacing: 0.05em;
   padding: 7px 20px; border-radius: 30px;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 16px rgba(212,136,10,0.35);
+  box-shadow: 0 4px 16px rgba(139,105,20,0.35);
 }
 
 /* Pixel title */
@@ -135,15 +136,14 @@ section:last-of-type { border-bottom: none; }
   font-weight: 400;
   color: var(--brick);
   letter-spacing: 0.06em;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1.8rem;
   line-height: 1;
-  /* pixel-sharp rendering */
   image-rendering: pixelated;
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: none;
   text-shadow:
-    3px 3px 0 rgba(194,67,42,0.20),
-    6px 6px 0 rgba(194,67,42,0.08);
+    3px 3px 0 rgba(196,70,43,0.20),
+    6px 6px 0 rgba(196,70,43,0.08);
 }
 
 .hero .subtitle {
