@@ -6,6 +6,19 @@
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
+<style>
+.pc-arrow {
+  display: flex; align-items: center; gap: 5px;
+  margin-top: 1.1rem; padding-top: 0.9rem;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.3px;
+  color: var(--navy); opacity: 0.55;
+  transition: opacity 0.2s, gap 0.2s;
+}
+.page-card:hover .pc-arrow {
+  opacity: 1; gap: 9px;
+}
+</style>
 </head>
 <body>
 <nav>
@@ -58,26 +71,31 @@
       <div class="pc-icon"><i class="ph-fill ph-trophy" style="font-size:1.9rem;color:var(--navy)"></i></div>
       <div class="pc-title">最終排名</div>
       <div class="pc-desc">10 組完整 NPV 排名、業主權益與平均投資策略比較表</div>
+      <div class="pc-arrow">前往查看 <i class="ph ph-arrow-right"></i></div>
     </a>
     <a href="journey.html" class="page-card">
       <div class="pc-icon"><i class="ph ph-chart-line-up" style="font-size:1.9rem;color:var(--navy)"></i></div>
       <div class="pc-title">十期成長歷程</div>
       <div class="pc-desc">從期 1 虧損 $382k 到穩定獲利的收益、損益與市占率全程走勢</div>
+      <div class="pc-arrow">前往查看 <i class="ph ph-arrow-right"></i></div>
     </a>
     <a href="strategy.html" class="page-card">
       <div class="pc-icon"><i class="ph ph-target" style="font-size:1.9rem;color:var(--navy)"></i></div>
       <div class="pc-title">策略解析</div>
       <div class="pc-desc">第 6 期定價從 $6.86 跳升至 $9.00 的關鍵轉折點與10期決策一覽</div>
+      <div class="pc-arrow">前往查看 <i class="ph ph-arrow-right"></i></div>
     </a>
     <a href="analysis.html" class="page-card">
       <div class="pc-icon"><i class="ph ph-magnifying-glass-plus" style="font-size:1.9rem;color:var(--navy)"></i></div>
       <div class="pc-title">深度分析</div>
       <div class="pc-desc">勝出歸因、競爭者失誤模式與 NPV 公式深度解讀</div>
+      <div class="pc-arrow">前往查看 <i class="ph ph-arrow-right"></i></div>
     </a>
     <a href="conclusion.html" class="page-card">
       <div class="pc-icon"><i class="ph ph-lightbulb" style="font-size:1.9rem;color:var(--navy)"></i></div>
       <div class="pc-title">心得與結論</div>
       <div class="pc-desc">六大企業管理洞察，從模擬到現實的學習轉化</div>
+      <div class="pc-arrow">前往查看 <i class="ph ph-arrow-right"></i></div>
     </a>
   </div>
 

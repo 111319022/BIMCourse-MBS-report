@@ -8,6 +8,70 @@
 <link rel="stylesheet" href="style.css">
 <script src="data.js"></script>
 <script src="script.js" defer></script>
+<style>
+/* ── OGSM Grid ── */
+.ogsm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 3rem;
+}
+.ogsm-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem 2rem;
+  box-shadow: var(--shadow-sm);
+  border-top: 4px solid transparent;
+}
+.ogsm-o { border-top-color: var(--navy); }
+.ogsm-g { border-top-color: #2E8B57; }
+.ogsm-s { border-top-color: var(--amber); }
+.ogsm-m { border-top-color: var(--brick); }
+.ogsm-label {
+  font-size: 11px; font-weight: 800; letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+  display: flex; align-items: baseline; gap: 6px;
+}
+.ogsm-o .ogsm-label { color: var(--navy); }
+.ogsm-g .ogsm-label { color: #2E8B57; }
+.ogsm-s .ogsm-label { color: var(--amber); }
+.ogsm-m .ogsm-label { color: var(--brick); }
+.ogsm-label span { font-size: 9px; font-weight: 600; letter-spacing: 1px; opacity: 0.65; }
+.ogsm-card h3 {
+  font-family: 'Noto Serif TC', serif; font-size: 17px;
+  font-weight: 700; color: var(--ink); margin-bottom: 0.8rem;
+}
+.ogsm-card p, .ogsm-card li { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+.ogsm-card ul { padding-left: 1.2rem; margin: 0; }
+.ogsm-card li { margin-bottom: 0.5rem; }
+.ogsm-note { font-size: 12px !important; color: var(--ink-muted) !important; margin-top: 0.6rem; font-style: italic; }
+@media (max-width: 768px) { .ogsm-grid { grid-template-columns: 1fr; } }
+
+/* ── 決策對照表 ── */
+.compare-table-wrap { overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.compare-table th {
+  background: var(--surface-2); color: var(--ink-mid);
+  font-weight: 700; font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.5px; padding: 10px 14px; border-bottom: 2px solid var(--border-heavy);
+  white-space: nowrap;
+}
+.compare-table td { padding: 14px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.65; }
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr.pivot-row { background: rgba(212,136,10,0.06); }
+.compare-table tr:hover td { background: var(--surface-2); }
+.ct-period { font-weight: 800; font-size: 15px; color: var(--navy); white-space: nowrap; }
+.ct-period small { display: block; font-size: 11px; font-weight: 600; color: var(--ink-muted); margin-top: 2px; }
+.ct-decision { color: var(--ink); }
+.ct-decision strong { color: var(--navy); }
+.expected-cell { color: var(--amber); font-weight: 600; }
+.actual-cell { color: #2E8B57; font-weight: 600; }
+.diff-cell { font-size: 13px; color: var(--ink-mid); }
+.diff-hit  { color: #2E8B57; font-weight: 700; }
+.diff-miss { color: var(--brick); font-weight: 700; }
+.diff-over { color: var(--navy); font-weight: 700; }
+</style>
 </head>
 <body>
 <nav>
@@ -34,6 +98,59 @@
 </div>
 
 <section>
+
+  <!-- ── OGSM Framework ── -->
+  <div class="section-headline fade-in">
+    <h2 class="section-title">OGSM 決策框架</h2>
+    <p class="section-subtitle">Objective · Goals · Strategies · Measures — 我們如何做決定？</p>
+  </div>
+
+  <div class="ogsm-grid fade-in">
+
+    <div class="ogsm-card ogsm-o">
+      <div class="ogsm-label">O <span>Objective 目標</span></div>
+      <h3>在 MBS 競賽中以最大化 NPV 取得第一名</h3>
+      <p>以 8% 折現率計算的 NPV 作為唯一勝負指標，要求同時兼顧<strong>每期現金流（股利）</strong>與<strong>末期業主權益</strong>的雙重累積，不能只顧短期銷量。</p>
+      <p class="ogsm-note">NPV = Σ（各期股利折現）＋（末期業主權益 ＋ 末期股利）折現 − 期初業主權益</p>
+    </div>
+
+    <div class="ogsm-card ogsm-g">
+      <div class="ogsm-label">G <span>Goals 量化指標</span></div>
+      <h3>可驗證的具體目標</h3>
+      <ul>
+        <li>最終 NPV ≥ $2,500,000（全場最高）</li>
+        <li>末期業主權益 ≥ $9,000,000</li>
+        <li>最遲 P3 轉為正獲利（驗證研發形象效果）</li>
+        <li>P6 漲至 $9.00 後市占率不低於 13%（驗證低彈性假設）</li>
+        <li>10 期研發費用每期維持 $400,000（不間斷，累計 $4M）</li>
+      </ul>
+    </div>
+
+    <div class="ogsm-card ogsm-s">
+      <div class="ogsm-label">S <span>Strategies 策略行動</span></div>
+      <h3>四項核心策略</h3>
+      <ul>
+        <li><strong>高研發奠基</strong>：P1–P10 每期 $400k，全場唯一不間斷，建立產品形象護城河，支撐後期溢價</li>
+        <li><strong>P6 定價轉折</strong>：前 5 期漸進由 $6.85 提升至 $8.35，待形象積累後第 6 期全線跳升至 $9.00 上限，一次到位收割</li>
+        <li><strong>分散市場布局</strong>：四大市場均衡投入，大陸港澳為主戰場（末期 18.66% 市占），不押注單一區域</li>
+        <li><strong>產能前置規劃</strong>：設備投資在 P6 由 $200k 加倍至 $400k，確保 P7+ 有產能出貨支撐高定價策略</li>
+      </ul>
+    </div>
+
+    <div class="ogsm-card ogsm-m">
+      <div class="ogsm-label">M <span>Measures 衡量方式</span></div>
+      <h3>每期驗證機制</h3>
+      <ul>
+        <li>每期結束後對比<strong>市占率變化</strong>，驗證「低彈性市場高定價不流失客戶」的核心假設</li>
+        <li>追蹤<strong>業主權益成長率</strong>，確認研發 $400k 的複利效果在 P3–P5 開始顯現</li>
+        <li>觀察競爭者訂價行為，判斷 P6 後是否需要微調漲幅（實際上維持不動）</li>
+        <li>以 NPV 公式模擬不同股利發放情境，決定最優發放時機（以最大化折現回報）</li>
+        <li>以 AI（LLM）輔助分析每期損益表，快速識別成本異常與定價空間</li>
+      </ul>
+    </div>
+
+  </div>
+
   <!-- Pricing pivot story -->
   <div class="section-headline fade-in">
     <h2 class="section-title">定價策略：第 6 期的大轉彎</h2>
@@ -82,6 +199,136 @@
       </thead>
       <tbody id="decisionTable"></tbody>
     </table>
+  </div>
+
+  <!-- ── Decision vs Expected vs Actual ── -->
+  <div class="section-headline fade-in" style="margin-top:3.5rem">
+    <h2 class="section-title">決策 × 預設結果 × 實際績效</h2>
+    <p class="section-subtitle">四個關鍵期的比較分析 — 我們做了什麼、預期什麼、結果得到什麼</p>
+  </div>
+
+  <div class="compare-table-wrap fade-in">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th style="width:8%">期數</th>
+          <th style="width:28%">決策內容</th>
+          <th style="width:22%">預設結果</th>
+          <th style="width:22%">實際績效</th>
+          <th style="width:20%">差異說明</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- P1 -->
+        <tr>
+          <td><div class="ct-period">P1<small>開局奠基</small></div></td>
+          <td class="ct-decision">
+            訂價 $6.85–$6.90（低於市場上限）<br>
+            研發 <strong>$400k</strong>、行銷 $550k、設備 $200k<br>
+            四市場全面出貨（600k 件）
+          </td>
+          <td class="expected-cell">
+            市占率 ~8%<br>
+            收益 ~$3.0M<br>
+            凈利 約 −$300k<br>
+            <span style="font-weight:400;color:var(--ink-muted);font-size:12px">（接受前期高投入損失）</span>
+          </td>
+          <td class="actual-cell">
+            市占率 <strong>10.10%</strong> ✓<br>
+            收益 $3,353,067<br>
+            凈利 −$382,775
+          </td>
+          <td class="diff-cell">
+            <span class="diff-over">市占超標 ＋2%</span>，早期出貨積極驗證了市場接受度；但 $400k 研發＋$550k 行銷雙重投入，使虧損比預設略深約 $80k。結論：<span class="diff-hit">市場反應優於預期</span>。
+          </td>
+        </tr>
+
+        <!-- P3 -->
+        <tr>
+          <td><div class="ct-period">P3<small>首次轉盈</small></div></td>
+          <td class="ct-decision">
+            訂價 $7.30–$8.00（各市場差異化）<br>
+            研發 <strong>$400k</strong>、行銷 $410k、設備 $200k<br>
+            預期研發形象效果開始顯現
+          </td>
+          <td class="expected-cell">
+            市占率 ~11%<br>
+            收益 ~$4.0M<br>
+            凈利 約 +$50k<br>
+            <span style="font-weight:400;color:var(--ink-muted);font-size:12px">（首次轉正，形象複利啟動）</span>
+          </td>
+          <td class="actual-cell">
+            市占率 10.83%<br>
+            收益 $4,063,789<br>
+            凈利 <strong>+$61,438</strong> ✓
+          </td>
+          <td class="diff-cell">
+            獲利幅度<span class="diff-over"> 略超預設 ＋$11k</span>，驗證了研發複利啟動的假設；市占率比預設低約 0.17%，東南亞行銷投入縮減（$410k vs P1 $550k）影響了部分市占。整體視為<span class="diff-hit">如期達標</span>。
+          </td>
+        </tr>
+
+        <!-- P6 -->
+        <tr class="pivot-row">
+          <td><div class="ct-period">P6<small>定價轉折 ▲</small></div></td>
+          <td class="ct-decision">
+            <strong>四市場全線跳升至 $9.00</strong>（上限）<br>
+            研發 $400k、行銷 $430k<br>
+            設備加倍 <strong>$400k</strong>（預備 P7 擴產）
+          </td>
+          <td class="expected-cell">
+            市占率 ~13%<br>
+            <span style="font-weight:400;font-size:12px">（預設漲價後市場微縮）</span><br>
+            收益 ~$4.5M<br>
+            凈利 約 +$300k
+          </td>
+          <td class="actual-cell">
+            市占率 <strong>16.55%</strong> 🏆<br>
+            <span style="font-weight:400;font-size:12px">（全程最高！）</span><br>
+            收益 $4,935,888<br>
+            凈利 +$411,754
+          </td>
+          <td class="diff-cell">
+            最大驚喜：市占率不降反升，比預設<span class="diff-over"> 高出 ＋3.55%</span>。低彈性市場假設完全驗證——高定價反而強化了品牌形象信號，部分競爭者此時仍在低價區間，使我們搶到更多份額。<span class="diff-hit">策略奏效，實績全面超標</span>。
+          </td>
+        </tr>
+
+        <!-- P9 -->
+        <tr>
+          <td><div class="ct-period">P9<small>庫存失算</small></div></td>
+          <td class="ct-decision">
+            維持 $9.00、研發 $400k<br>
+            行銷 $470k、設備 $400k<br>
+            計畫生產量與 P8 相近，預留庫存 ~50k 件
+          </td>
+          <td class="expected-cell">
+            市占率 ~14%<br>
+            收益 ~$5.6M<br>
+            凈利 ~+$500k<br>
+            期末庫存 ~50,000 件
+          </td>
+          <td class="actual-cell">
+            市占率 13.44%<br>
+            收益 $5,905,116<br>
+            凈利 +$545,052<br>
+            期末庫存 <strong style="color:var(--brick)">0 件 ⚠</strong>
+          </td>
+          <td class="diff-cell">
+            收益與獲利均<span class="diff-over">超出預設</span>，但需求遠超計畫，導致庫存在期末<span class="diff-miss">完全耗盡</span>。P10 期初存貨歸零，只能依賴當期生產出貨，直接壓縮了最後一期利潤（凈利從 $545k 跌至 $86k）。這是全 10 期最嚴重的決策失誤。
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-block fade-in" style="margin-top:1.5rem">
+    <div class="ai-badge"><i class="ph ph-lightbulb"></i> 綜合結論</div>
+    <p>
+      整體來看，滴滴滴的核心假設（低彈性市場支撐高定價、研發形象複利效果）在 P6 得到了<span class="highlight-text">超出預期的正向驗證</span>，使得實際績效明顯優於預設。
+      主要落差發生在 P9 的庫存管理：高需求是好事，但未能提前備料，造成 P10 期末收割期的利潤損失。
+      若能在 P8–P9 維持 10–15% 安全庫存緩衝，NPV 估計可再提升 $150k–$300k。
+    </p>
   </div>
 
   <!-- Regional analysis -->
