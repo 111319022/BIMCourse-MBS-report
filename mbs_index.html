@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>滴滴滴 · MBS 期末報告</title>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<nav>
+  <div class="nav-content">
+    <a href="mbs_index.html" class="nav-brand"><i class="ph-fill ph-trophy" style="color:var(--amber)"></i> 滴滴滴 · MBS</a>
+    <div class="nav-links">
+      <a href="mbs_index.html"      data-page="index">首頁</a>
+      <a href="ranking.html"    data-page="ranking">排名</a>
+      <a href="journey.html"    data-page="journey">十期歷程</a>
+      <a href="strategy.html"   data-page="strategy">策略解析</a>
+      <a href="analysis.html"   data-page="analysis">分析</a>
+      <a href="conclusion.html" data-page="conclusion">結論</a>
+    </div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid rgba(28,28,28,0.18);transition:all 0.2s;margin-left:16px;" onmouseover="this.style.color='var(--navy)';this.style.borderColor='var(--navy)'" onmouseout="this.style.color='var(--ink-muted)';this.style.borderColor='rgba(28,28,28,0.18)'"><i class="ph ph-arrow-left"></i> 返回主頁</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge fade-in"><i class="ph-fill ph-crown"></i> 總排名第一名 </div>
+  <h1 class="fade-in">滴滴滴</h1>
+  <p class="subtitle fade-in">MBS 商業儀表板模擬競賽 · 114-2 企業創新管理 · 共 10 期 · 4 大市場</p>
+  <div class="hero-stats fade-in">
+    <div class="hero-stat">
+      <span class="val gold">$2,740,705</span>
+      <span class="lbl"><i class="ph ph-trend-up"></i> NPV 凈現值（第一名）</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val accent">$9,461,087</span>
+      <span class="lbl"><i class="ph ph-bank"></i> 最終業主權益</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val accent">14.50%</span>
+      <span class="lbl"><i class="ph ph-chart-pie-slice"></i> 末期市場占有率</span>
+    </div>
+    <div class="hero-stat">
+      <span class="val gold">$5,760,000</span>
+      <span class="lbl"><i class="ph ph-money"></i> 末期收入（全場最高）</span>
+    </div>
+  </div>
+</div>
+
+<section style="padding-top:4rem">
+  <div class="section-headline fade-in">
+    <h2 class="section-title">報告導覽</h2>
+    <p class="section-subtitle">點選下方進入各章節，或由上方導覽列切換</p>
+  </div>
+
+  <div class="page-cards fade-in">
+    <a href="ranking.html" class="page-card">
+      <div class="pc-icon"><i class="ph-fill ph-trophy" style="font-size:1.9rem;color:var(--navy)"></i></div>
+      <div class="pc-title">最終排名</div>
+      <div class="pc-desc">10 組完整 NPV 排名、業主權益與平均投資策略比較表</div>
+    </a>
+    <a href="journey.html" class="page-card">
+      <div class="pc-icon"><i class="ph ph-chart-line-up" style="font-size:1.9rem;color:var(--navy)"></i></div>
+      <div class="pc-title">十期成長歷程</div>
+      <div class="pc-desc">從期 1 虧損 $382k 到穩定獲利的收益、損益與市占率全程走勢</div>
+    </a>
+    <a href="strategy.html" class="page-card">
+      <div class="pc-icon"><i class="ph ph-target" style="font-size:1.9rem;color:var(--navy)"></i></div>
+      <div class="pc-title">策略解析</div>
+      <div class="pc-desc">第 6 期定價從 $6.86 跳升至 $9.00 的關鍵轉折點與10期決策一覽</div>
+    </a>
+    <a href="analysis.html" class="page-card">
+      <div class="pc-icon"><i class="ph ph-magnifying-glass-plus" style="font-size:1.9rem;color:var(--navy)"></i></div>
+      <div class="pc-title">深度分析</div>
+      <div class="pc-desc">勝出歸因、競爭者失誤模式與 NPV 公式深度解讀</div>
+    </a>
+    <a href="conclusion.html" class="page-card">
+      <div class="pc-icon"><i class="ph ph-lightbulb" style="font-size:1.9rem;color:var(--navy)"></i></div>
+      <div class="pc-title">心得與結論</div>
+      <div class="pc-desc">六大企業管理洞察，從模擬到現實的學習轉化</div>
+    </a>
+  </div>
+
+  <!-- Quick facts -->
+  <div class="section-headline fade-in" style="margin-top:4rem">
+    <h2 class="section-title">競賽概覽</h2>
+    <p class="section-subtitle">MBS Level-2 · 通貨膨脹幅度大 · 折現率 8% · 價格彈性低 · 研發影響低</p>
+  </div>
+
+  <div class="grid grid-3 fade-in">
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--brick)">10 期</div>
+      <p>競賽總期數</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--brick)">14 → 7</div>
+      <p>參賽隊數 → 完賽隊數（3 組破產）</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--brick)">8%</div>
+      <p>NPV 折現率</p>
+    </div>
+  </div>
+
+  <div class="info-block fade-in">
+    <p>
+      本次 MBS 競賽涵蓋四大市場：<strong>本地、東北亞日韓、大陸港澳、東南亞新越泰馬</strong>。
+      各組每期需決策 <span class="highlight-text">訂價、行銷預算、生產配置、研發、設備投資、維護支出與股利</span> 共 8 項。
+      勝負以 NPV 凈現值計算，折現率 8%，納入每期股利與最終業主權益，考核長期經營價值。
+    </p>
+    <p>
+      滴滴滴從第 1 期虧損 $382,775，歷經 10 期穩健成長，以 <span class="highlight-text">NPV $2,740,705</span> 奪得第一名，
+      最終業主權益達 $9,461,087，末期收入 $5,760,000 全場最高。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <strong>滴滴滴</strong> · 114-2 企業創新管理 · MBS Macro Business Simulation Level-2 · 2026.06.01
+<br><span style="color:var(--ink-muted);font-size:13px">國立臺北教育大學 · 數位二甲 · 徐丞睿</span>
+</footer>
+</body>
+</html>

@@ -2,121 +2,517 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>滴滴滴 · MBS 期末報告</title>
+<title>企業創新管理 · 期末成果 · 數位二甲 徐丞睿</title>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+
+:root {
+  --bg:           #F6F6F4;
+  --bg-warm:      #EDEDEB;
+  --surface:      #FFFFFF;
+  --surface-2:    #EDEDEB;
+  --border:       rgba(28, 28, 28, 0.10);
+  --border-heavy: rgba(28, 28, 28, 0.18);
+  --ink:          #0D1520;
+  --ink-mid:      #2A3850;
+  --ink-muted:    #7A8A9A;
+  --brick:        #C4462B;
+  --brick-light:  #E05A3A;
+  --forest:       #1E4D3A;
+  --amber:        #8B6914;
+  --amber-light:  #A87B1C;
+  --sky:          #3A5F8A;
+  --navy:         #1B2A4A;
+  --radius:       16px;
+  --shadow-sm:    0 2px 8px rgba(28,28,28,0.08);
+  --shadow-md:    0 6px 24px rgba(28,28,28,0.11);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans TC', -apple-system, 'Microsoft JhengHei', sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scroll animations ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Nav ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 64px;
+  background: rgba(246,246,244,0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-heavy);
+}
+.nav-content {
+  max-width: 1080px; margin: 0 auto;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+}
+.nav-brand {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700; font-size: 17px; color: var(--ink);
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-info { font-size: 13px; color: var(--ink-muted); font-weight: 400; }
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 600; color: var(--ink-muted);
+  text-decoration: none; padding: 6px 14px; border-radius: 20px;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--navy); background: var(--bg-warm); }
+.nav-links a.active { color: var(--brick); background: rgba(196,70,43,0.08); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 5rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23C2432A' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--navy); color: #fff;
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.05em;
+  padding: 7px 22px; border-radius: 30px;
+  margin-bottom: 2.2rem;
+  box-shadow: 0 4px 16px rgba(27,42,74,0.28);
+}
+.hero h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(36px, 5.5vw, 68px);
+  font-weight: 700; color: var(--ink);
+  letter-spacing: -0.025em; margin-bottom: 1rem; line-height: 1.15;
+}
+.hero .subtitle {
+  font-size: clamp(15px, 2vw, 19px);
+  color: var(--ink-muted); margin-bottom: 1rem; max-width: 580px;
+}
+.hero .student {
+  font-size: 15px; color: var(--ink-muted); margin-bottom: 4rem;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.hero .student::before, .hero .student::after {
+  content: ''; display: inline-block; width: 32px; height: 1px; background: var(--border-heavy);
+}
+.scroll-hint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── Sections ── */
+.page-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 8rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.page-section:last-of-type { border-bottom: none; }
+
+.section-number {
+  font-family: 'DotGothic16', monospace;
+  font-size: 13px; color: var(--brick);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(32px, 4vw, 50px);
+  font-weight: 700; color: var(--ink);
+  letter-spacing: -0.02em; line-height: 1.15;
+  margin-bottom: 0.8rem;
+}
+.section-desc {
+  font-size: 17px; color: var(--ink-muted);
+  max-width: 600px; line-height: 1.7; margin-bottom: 3rem;
+}
+
+/* ── Note cards (筆記) ── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+}
+.note-card {
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.2rem;
+  text-decoration: none; color: inherit;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, border-color 0.25s;
+  gap: 0.7rem;
+}
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(194,67,42,0.3);
+}
+.note-card-icon {
+  font-size: 1.8rem; color: var(--brick);
+}
+.note-card-week {
+  font-size: 11px; font-weight: 700; color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.note-card-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 15px; font-weight: 700; color: var(--ink);
+}
+
+/* ── Section feature card (MBS, WFM, Research) ── */
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem 3.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex; gap: 3rem; align-items: flex-start;
+  transition: box-shadow 0.3s;
+}
+.feature-card:hover { box-shadow: var(--shadow-md); }
+.feature-card-icon {
+  font-size: 3.5rem; flex-shrink: 0;
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-warm); border-radius: 20px;
+  border: 1px solid var(--border-heavy);
+}
+.feature-card-body { flex: 1; }
+.feature-card-body h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 24px; font-weight: 700; color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+.feature-card-body p {
+  font-size: 16px; color: var(--ink-muted); line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+.feature-card-stats {
+  display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.8rem;
+}
+.feature-stat { display: flex; flex-direction: column; gap: 3px; }
+.feature-stat .val {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 22px; font-weight: 700; color: var(--amber);
+}
+.feature-stat .lbl { font-size: 12px; color: var(--ink-muted); font-weight: 500; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 30px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.02em;
+  text-decoration: none; transition: all 0.25s;
+  cursor: pointer; border: none;
+}
+.btn-primary {
+  background: var(--navy); color: #fff;
+  box-shadow: 0 4px 14px rgba(27,42,74,0.25);
+}
+.btn-primary:hover { background: var(--ink); box-shadow: 0 6px 20px rgba(27,42,74,0.35); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-muted);
+  border: 1px solid var(--border-heavy);
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--navy); }
+
+/* ── Placeholder state ── */
+.placeholder-card {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--surface),
+    var(--surface) 10px,
+    var(--bg-warm) 10px,
+    var(--bg-warm) 20px
+  );
+  border: 2px dashed var(--border-heavy);
+  border-radius: 24px;
+  padding: 4rem 3rem;
+  text-align: center;
+}
+.placeholder-card i { font-size: 3rem; color: var(--ink-muted); margin-bottom: 1rem; display: block; }
+.placeholder-card h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 20px; font-weight: 700; color: var(--ink-muted); margin-bottom: 0.5rem;
+}
+.placeholder-card p { font-size: 14px; color: var(--ink-muted); }
+
+/* ── MBS nav items inside II section ── */
+.mbs-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+.mbs-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg-warm); border: 1px solid var(--border);
+  border-radius: 12px; padding: 0.9rem 1.1rem;
+  text-decoration: none; color: var(--ink-mid);
+  font-size: 14px; font-weight: 500;
+  transition: background 0.2s, border-color 0.2s;
+}
+.mbs-nav-item:hover { background: var(--surface); border-color: var(--navy); color: var(--navy); }
+.mbs-nav-item i { font-size: 1rem; color: var(--brick); flex-shrink: 0; }
+
+/* ── Footer ── */
+footer {
+  text-align: center; padding: 3rem 2rem;
+  color: var(--ink-muted); font-size: 13px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+footer strong { color: var(--ink); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .nav-info { display: none; }
+  .nav-links a { padding: 5px 10px; font-size: 12px; }
+  .page-section { padding: 6rem 1.5rem; }
+  .feature-card { flex-direction: column; padding: 2rem; gap: 1.5rem; }
+  .feature-card-stats { gap: 1.2rem; }
+  .notes-grid { grid-template-columns: repeat(3, 1fr); }
+  .mbs-nav { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
 <body>
+
 <nav>
   <div class="nav-content">
-    <a href="index.html" class="nav-brand"><i class="ph-fill ph-trophy" style="color:var(--amber)"></i> 滴滴滴 · MBS</a>
+    <a href="index.html" class="nav-brand">
+      <i class="ph-fill ph-graduation-cap" style="color:var(--brick)"></i>
+      企業創新管理 · 期末成果
+    </a>
     <div class="nav-links">
-      <a href="index.html"      data-page="index">首頁</a>
-      <a href="ranking.html"    data-page="ranking">排名</a>
-      <a href="journey.html"    data-page="journey">十期歷程</a>
-      <a href="strategy.html"   data-page="strategy">策略解析</a>
-      <a href="analysis.html"   data-page="analysis">分析</a>
-      <a href="conclusion.html" data-page="conclusion">結論</a>
+      <a href="#section-notes" data-section="notes">I. 筆記</a>
+      <a href="#section-mbs"   data-section="mbs">II. MBS</a>
+      <a href="#section-wfm"   data-section="wfm">III. WFM</a>
+      <a href="#section-proj"  data-section="proj">IV. 專案</a>
     </div>
   </div>
 </nav>
 
+<!-- ═══════════════ HERO ═══════════════ -->
 <div class="hero">
-  <div class="hero-badge fade-in"><i class="ph-fill ph-crown"></i> 總排名第一名 </div>
-  <h1 class="fade-in">滴滴滴</h1>
-  <p class="subtitle fade-in">MBS 商業儀表板模擬競賽 · 114-2 企業創新管理 · 共 10 期 · 4 大市場</p>
-  <div class="hero-stats fade-in">
-    <div class="hero-stat">
-      <span class="val gold">$2,740,705</span>
-      <span class="lbl"><i class="ph ph-trend-up"></i> NPV 凈現值（第一名）</span>
-    </div>
-    <div class="hero-stat">
-      <span class="val accent">$9,461,087</span>
-      <span class="lbl"><i class="ph ph-bank"></i> 最終業主權益</span>
-    </div>
-    <div class="hero-stat">
-      <span class="val accent">14.50%</span>
-      <span class="lbl"><i class="ph ph-chart-pie-slice"></i> 末期市場占有率</span>
-    </div>
-    <div class="hero-stat">
-      <span class="val gold">$5,760,000</span>
-      <span class="lbl"><i class="ph ph-money"></i> 末期收入（全場最高）</span>
-    </div>
+  <div class="hero-badge fade-in">
+    <i class="ph ph-book-open"></i>
+    114-2 企業創新管理
+  </div>
+  <h1 class="fade-in">期末成果作業</h1>
+  <p class="subtitle fade-in">Business Innovation Management · 2026 Spring</p>
+  <p class="student fade-in">數位二甲 &nbsp;徐丞睿</p>
+
+  <!-- 4 section quick links -->
+  <div class="fade-in" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+    <a href="#section-notes" class="btn btn-ghost"><i class="ph ph-note"></i> I. 筆記</a>
+    <a href="#section-mbs"   class="btn btn-ghost"><i class="ph ph-chart-bar"></i> II. MBS 模擬</a>
+    <a href="#section-wfm"   class="btn btn-ghost"><i class="ph ph-file-text"></i> III. WFM 作業</a>
+    <a href="#section-proj"  class="btn btn-ghost"><i class="ph ph-presentation-chart"></i> IV. 學期專案</a>
+  </div>
+
+  <div class="scroll-hint fade-in">
+    <i class="ph ph-caret-down"></i>
   </div>
 </div>
 
-<section style="padding-top:4rem">
-  <div class="section-headline fade-in">
-    <h2 class="section-title">報告導覽</h2>
-    <p class="section-subtitle">點選下方進入各章節，或由上方導覽列切換</p>
+<!-- ═══════════════ I. 筆記 ═══════════════ -->
+<section class="page-section" id="section-notes">
+  <div class="fade-in">
+    <div class="section-number">I &nbsp;·&nbsp; Notes</div>
+    <h2 class="section-title">筆記</h2>
+    <p class="section-desc">課堂筆記共 9 個主題，以 PDF 格式整理。</p>
   </div>
 
-  <div class="page-cards fade-in">
-    <a href="ranking.html" class="page-card">
-      <div class="pc-icon"><i class="ph-fill ph-trophy" style="font-size:1.9rem;color:var(--navy)"></i></div>
-      <div class="pc-title">最終排名</div>
-      <div class="pc-desc">10 組完整 NPV 排名、業主權益與平均投資策略比較表</div>
+  <div class="notes-grid fade-in">
+    <a href="I.筆記Docs/wk1.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">01</span>
+      <span class="note-card-title">價值說</span>
     </a>
-    <a href="journey.html" class="page-card">
-      <div class="pc-icon"><i class="ph ph-chart-line-up" style="font-size:1.9rem;color:var(--navy)"></i></div>
-      <div class="pc-title">十期成長歷程</div>
-      <div class="pc-desc">從期 1 虧損 $382k 到穩定獲利的收益、損益與市占率全程走勢</div>
+    <a href="I.筆記Docs/wk2.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">02</span>
+      <span class="note-card-title">效率說</span>
     </a>
-    <a href="strategy.html" class="page-card">
-      <div class="pc-icon"><i class="ph ph-target" style="font-size:1.9rem;color:var(--navy)"></i></div>
-      <div class="pc-title">策略解析</div>
-      <div class="pc-desc">第 6 期定價從 $6.86 跳升至 $9.00 的關鍵轉折點與10期決策一覽</div>
+    <a href="I.筆記Docs/wk3.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">03</span>
+      <span class="note-card-title">資源說</span>
     </a>
-    <a href="analysis.html" class="page-card">
-      <div class="pc-icon"><i class="ph ph-magnifying-glass-plus" style="font-size:1.9rem;color:var(--navy)"></i></div>
-      <div class="pc-title">深度分析</div>
-      <div class="pc-desc">勝出歸因、競爭者失誤模式與 NPV 公式深度解讀</div>
+    <a href="I.筆記Docs/wk4.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">04</span>
+      <span class="note-card-title">結構說</span>
     </a>
-    <a href="conclusion.html" class="page-card">
-      <div class="pc-icon"><i class="ph ph-lightbulb" style="font-size:1.9rem;color:var(--navy)"></i></div>
-      <div class="pc-title">心得與結論</div>
-      <div class="pc-desc">六大企業管理洞察，從模擬到現實的學習轉化</div>
+    <a href="I.筆記Docs/wk5.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">05</span>
+      <span class="note-card-title">競局說</span>
+    </a>
+    <a href="I.筆記Docs/wk6.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">06</span>
+      <span class="note-card-title">統治說</span>
+    </a>
+    <a href="I.筆記Docs/wk7.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">07</span>
+      <span class="note-card-title">互賴說</span>
+    </a>
+    <a href="I.筆記Docs/wk8.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">08</span>
+      <span class="note-card-title">風險說</span>
+    </a>
+    <a href="I.筆記Docs/wk9.pdf" target="_blank" class="note-card">
+      <i class="ph-fill ph-file-pdf note-card-icon"></i>
+      <span class="note-card-week">09</span>
+      <span class="note-card-title">生態說</span>
     </a>
   </div>
+</section>
 
-  <!-- Quick facts -->
-  <div class="section-headline fade-in" style="margin-top:4rem">
-    <h2 class="section-title">競賽概覽</h2>
-    <p class="section-subtitle">MBS Level-2 · 通貨膨脹幅度大 · 折現率 8% · 價格彈性低 · 研發影響低</p>
+<!-- ═══════════════ II. MBS 模擬 ═══════════════ -->
+<section class="page-section" id="section-mbs">
+  <div class="fade-in">
+    <div class="section-number">II &nbsp;·&nbsp; MBS Simulation</div>
+    <h2 class="section-title">MBS 模擬</h2>
+    <p class="section-desc">小組商業儀表板模擬競賽成果報告，以 NPV 第一名收官。</p>
   </div>
 
-  <div class="grid grid-3 fade-in">
-    <div class="card" style="text-align:center">
-      <div class="big-num" style="color:var(--brick)">10 期</div>
-      <p>競賽總期數</p>
+  <div class="feature-card fade-in">
+    <div class="feature-card-icon">
+      <i class="ph-fill ph-trophy" style="color:var(--amber)"></i>
     </div>
-    <div class="card" style="text-align:center">
-      <div class="big-num" style="color:var(--brick)">14 → 7</div>
-      <p>參賽隊數 → 完賽隊數（3 組破產）</p>
-    </div>
-    <div class="card" style="text-align:center">
-      <div class="big-num" style="color:var(--brick)">8%</div>
-      <p>NPV 折現率</p>
+    <div class="feature-card-body">
+      <h3>滴滴滴 · MBS 期末報告</h3>
+      <p>
+        MBS Macro Business Simulation Level-2 · 10 期 · 4 大市場。
+        小組以 NPV $2,740,705 奪得全場第一，末期收入 $5,760,000 全場最高。
+      </p>
+      <div class="feature-card-stats">
+        <div class="feature-stat">
+          <span class="val">$2,740,705</span>
+          <span class="lbl">NPV 凈現值（第一名）</span>
+        </div>
+        <div class="feature-stat">
+          <span class="val">$9,461,087</span>
+          <span class="lbl">最終業主權益</span>
+        </div>
+        <div class="feature-stat">
+          <span class="val">14.50%</span>
+          <span class="lbl">末期市場占有率</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap">
+        <a href="mbs_index.html" target="_blank" class="btn btn-primary">
+          <i class="ph ph-arrow-square-out"></i> 進入報告首頁
+        </a>
+      </div>
+
+      <div class="mbs-nav">
+        <a href="ranking.html"    target="_blank" class="mbs-nav-item"><i class="ph-fill ph-ranking"></i> 最終排名</a>
+        <a href="journey.html"    target="_blank" class="mbs-nav-item"><i class="ph ph-chart-line-up"></i> 十期歷程</a>
+        <a href="strategy.html"   target="_blank" class="mbs-nav-item"><i class="ph ph-target"></i> 策略解析</a>
+        <a href="analysis.html"   target="_blank" class="mbs-nav-item"><i class="ph ph-magnifying-glass-plus"></i> 深度分析</a>
+        <a href="conclusion.html" target="_blank" class="mbs-nav-item"><i class="ph ph-lightbulb"></i> 心得與結論</a>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="info-block fade-in">
-    <p>
-      本次 MBS 競賽涵蓋四大市場：<strong>本地、東北亞日韓、大陸港澳、東南亞新越泰馬</strong>。
-      各組每期需決策 <span class="highlight-text">訂價、行銷預算、生產配置、研發、設備投資、維護支出與股利</span> 共 8 項。
-      勝負以 NPV 凈現值計算，折現率 8%，納入每期股利與最終業主權益，考核長期經營價值。
-    </p>
-    <p>
-      滴滴滴從第 1 期虧損 $382,775，歷經 10 期穩健成長，以 <span class="highlight-text">NPV $2,740,705</span> 奪得第一名，
-      最終業主權益達 $9,461,087，末期收入 $5,760,000 全場最高。
-    </p>
+<!-- ═══════════════ III. WFM 作業 ═══════════════ -->
+<section class="page-section" id="section-wfm">
+  <div class="fade-in">
+    <div class="section-number">III &nbsp;·&nbsp; WFH Assignment</div>
+    <h2 class="section-title">WFH 作業</h2>
+    <p class="section-desc">彈性週回家作業 Q&amp;A，個人作答。</p>
+  </div>
+
+  <div class="feature-card fade-in">
+    <div class="feature-card-icon">
+      <i class="ph-fill ph-file-text" style="color:var(--sky)"></i>
+    </div>
+    <div class="feature-card-body">
+      <h3>彈性週 WFH 回家作業 Q&amp;A</h3>
+      <p>企業創新管理彈性週作業，針對課程主題進行問答整理。</p>
+      <a href="II.彈性週HFM作業/企業創新管理-彈性週WFH回家作業Q&A.pdf" target="_blank" class="btn btn-primary">
+        <i class="ph ph-file-pdf"></i> 開啟 PDF
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ IV. 學期專案研究 ═══════════════ -->
+<section class="page-section" id="section-proj">
+  <div class="fade-in">
+    <div class="section-number">IV &nbsp;·&nbsp; Semester Project</div>
+    <h2 class="section-title">學期專案研究</h2>
+    <p class="section-desc">學期個案研究簡報，文件待上傳。</p>
+  </div>
+
+  <div class="placeholder-card fade-in">
+    <i class="ph ph-presentation-chart"></i>
+    <h3>簡報尚未上傳</h3>
+    <p>學期專案研究 PDF 補充後，此區塊將顯示簡報內容。</p>
   </div>
 </section>
 
 <footer>
-  <strong>滴滴滴</strong> · 114-2 企業創新管理 · MBS Macro Business Simulation Level-2 · 2026.06.01
-<br><span style="color:var(--ink-muted);font-size:13px">國立臺北教育大學 · 數位二甲 · 徐丞睿</span>
+  <strong>企業創新管理 · 期末成果</strong> · 114-2 · 2026 Spring
+  <br><span style="color:var(--ink-muted);font-size:13px">國立臺北教育大學 · 數位二甲 · 徐丞睿</span>
 </footer>
+
+<script>
+// Scroll fade-in
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Active nav highlight
+const sections = ['notes','mbs','wfm','proj'].map(id => document.getElementById('section-' + id));
+const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('section-', '');
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === id);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => { if (s) navObserver.observe(s); });
+</script>
 </body>
 </html>
