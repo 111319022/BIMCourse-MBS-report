@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.className = 'hb-btn'; btn.id = 'hbBtn';
       btn.setAttribute('aria-label', '開啟選單');
       btn.innerHTML = '<i class="ph ph-list"></i>';
-      nav.appendChild(btn);
+      nav.prepend(btn);
       btn.addEventListener('click', openMenu);
     }
 
