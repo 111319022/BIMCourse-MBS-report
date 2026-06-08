@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gogoro 產業分析 · 學期個案研究</title>
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+<style>
+/* ── ABC Cards ── */
+.abc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin: 2rem 0; }
+.abc-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.8rem 1.6rem; box-shadow: var(--shadow-sm);
+}
+.abc-card.focal      { border-top: 4px solid var(--navy); }
+.abc-card.benchmark  { border-top: 4px solid #2E8B57; }
+.abc-card.competition{ border-top: 4px solid var(--amber); }
+.abc-badge {
+  display: inline-block; font-size: 10px; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; padding: 3px 10px;
+  border-radius: 20px; margin-bottom: 0.8rem;
+}
+.focal      .abc-badge { background: rgba(27,42,74,0.1);    color: var(--navy); }
+.benchmark  .abc-badge { background: rgba(46,139,87,0.1);   color: #2E8B57; }
+.competition.abc-badge { background: rgba(139,105,20,0.1);  color: var(--amber); }
+.abc-card h3 { font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:var(--ink); margin-bottom:1rem; }
+.stat-row { display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:1px solid var(--border); }
+.stat-row:last-child { border-bottom:none; }
+.stat-row .lbl { color:var(--ink-muted); }
+.stat-row .val { font-weight:600; color:var(--ink); text-align:right; }
+
+/* ── Strategy Nine Cards ── */
+.nine-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin:2rem 0; }
+.nine-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem 1.4rem; box-shadow:var(--shadow-sm);
+  border-left:4px solid var(--navy);
+}
+.nine-num { font-size:10px; font-weight:800; color:var(--navy); letter-spacing:2px; margin-bottom:0.4rem; text-transform:uppercase; }
+.nine-card h4 { font-family:'Noto Serif TC',serif; font-size:15px; font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+.nine-sub { font-size:12px; color:var(--ink-muted); line-height:1.5; margin-bottom:0; }
+
+/* ── Timeline ── */
+.timeline { margin: 1.5rem 0; }
+.t-item { display:flex; gap:1.4rem; margin-bottom:0; }
+.t-year {
+  flex-shrink:0; width:56px; text-align:right;
+  font-weight:800; color:var(--brick); font-size:13.5px; padding-top:3px;
+}
+.t-body {
+  flex:1; padding-bottom:1.4rem; border-bottom:1px solid var(--border);
+  margin-bottom:0;
+}
+.t-item:last-child .t-body { border-bottom:none; padding-bottom:0; }
+.t-body strong { display:block; font-size:14.5px; font-weight:700; color:var(--ink); margin-bottom:0.3rem; }
+.t-body p { font-size:13.5px; color:var(--ink-mid); line-height:1.65; margin:0; }
+
+/* ── VRIO table check marks ── */
+.v-yes     { color:#2E8B57; font-weight:700; }
+.v-partial { color:var(--amber); font-weight:700; }
+.v-no      { color:var(--brick); font-weight:700; }
+
+/* ── Holdup grid ── */
+.holdup-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:1rem 0; }
+.holdup-card { padding:1.4rem 1.6rem; border-radius:var(--radius); border:1px solid var(--border); }
+.holdup-good { background:rgba(46,139,87,0.05); border-left:4px solid #2E8B57; }
+.holdup-bad  { background:rgba(194,67,42,0.05); border-left:4px solid var(--brick); }
+.holdup-card h4 { font-size:14.5px; font-weight:700; margin-bottom:0.5rem; }
+.holdup-good h4 { color:#2E8B57; }
+.holdup-bad  h4 { color:var(--brick); }
+.holdup-card p, .holdup-card li { font-size:13.5px; color:var(--ink-mid); line-height:1.7; }
+.holdup-card ul { padding-left:1.1rem; margin:0.4rem 0 0; }
+
+/* ── rk strategy ── */
+.rk-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:1rem 0; }
+.rk-card { padding:1.4rem 1.6rem; border-radius:var(--radius); border:1px solid var(--border); background:var(--surface); }
+.rk-r { border-top:4px solid var(--amber); }
+.rk-k { border-top:4px solid var(--navy); }
+.rk-card h4 { font-size:14.5px; font-weight:700; margin-bottom:0.5rem; color:var(--ink); }
+.rk-card p, .rk-card li { font-size:13.5px; color:var(--ink-mid); line-height:1.7; }
+.rk-card ul { padding-left:1.1rem; margin:0.4rem 0 0; }
+
+/* ── Recommendation cards ── */
+.rec-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin:2rem 0; }
+.rec-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.8rem 1.6rem; box-shadow:var(--shadow-sm);
+}
+.rec-num { font-size:28px; font-weight:800; color:var(--navy); opacity:0.15; float:right; line-height:1; }
+.rec-card h4 { font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:var(--ink); margin-bottom:0.6rem; }
+.rec-card p, .rec-card li { font-size:13.5px; color:var(--ink-mid); line-height:1.7; }
+.rec-card ul { padding-left:1.1rem; margin:0.4rem 0 0; }
+
+/* ── Conclusion items ── */
+.concl-item {
+  display:flex; gap:1.2rem; align-items:flex-start;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem 1.6rem; margin-bottom:1rem;
+  box-shadow:var(--shadow-sm);
+}
+.concl-num {
+  flex-shrink:0; width:32px; height:32px; border-radius:50%;
+  background:var(--navy); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:14px;
+}
+.concl-body h4 { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:0.4rem; }
+.concl-body p { font-size:13.5px; color:var(--ink-mid); line-height:1.7; margin:0; }
+
+@media(max-width:768px){
+  .abc-grid,.nine-grid,.rec-grid,.holdup-grid,.rk-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-content">
+    <a href="index.html" class="nav-brand"><i class="ph ph-house-simple"></i> 企業創新管理</a>
+    <div class="nav-links">
+      <a href="index.html#section-proj" class="active">IV. 學期專案</a>
+    </div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--ink-muted);text-decoration:none;padding:6px 14px;border-radius:20px;border:1px solid rgba(28,28,28,0.18);transition:all 0.2s;margin-left:16px;" onmouseover="this.style.color='var(--navy)';this.style.borderColor='var(--navy)'" onmouseout="this.style.color='var(--ink-muted)';this.style.borderColor='rgba(28,28,28,0.18)'"><i class="ph ph-arrow-left"></i> 返回主頁</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner fade-in">
+    <div class="page-header-eyebrow"><i class="ph ph-presentation-chart"></i> 學期個案研究</div>
+    <h1>台灣電動機車產業分析</h1>
+    <p>Gogoro × 光陽 × 三陽｜ABC 競品分析 × 策略九說</p>
+  </div>
+</div>
+
+<!-- ═══ 01 產業背景 ═══ -->
+<section>
+  <div class="section-headline fade-in">
+    <div class="section-eyebrow">01</div>
+    <h2 class="section-title">產業背景</h2>
+    <p class="section-subtitle">台灣電動機車市場規模與趨勢</p>
+  </div>
+
+  <div class="grid grid-4 fade-in">
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--navy)">80,000+</div>
+      <p>2024 年電動機車年銷量（台）</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--amber)">65%</div>
+      <p>Gogoro 市佔率（銷量最高）</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:#2E8B57">22%</div>
+      <p>光陽 iONEX 市佔（亞軍）</p>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="big-num" style="color:var(--brick)">12,000+</div>
+      <p>GoStation 換電站數量</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 ABC 競品分析 ═══ -->
+<section>
+  <div class="section-headline fade-in">
+    <div class="section-eyebrow">02</div>
+    <h2 class="section-title">ABC 競品分析框架</h2>
+    <p class="section-subtitle">Focal Firm · Benchmark · Competition</p>
+  </div>
+
+  <div class="abc-grid fade-in">
+    <div class="abc-card focal">
+      <span class="abc-badge">A · Focal Firm</span>
+      <h3>Gogoro（睿能創意）</h3>
+      <div class="stat-row"><span class="lbl">成立年份</span><span class="val">2011</span></div>
+      <div class="stat-row"><span class="lbl">上市</span><span class="val">2022 NASDAQ（GGR）</span></div>
+      <div class="stat-row"><span class="lbl">核心模式</span><span class="val">BaaS 電池換電訂閱</span></div>
+      <div class="stat-row"><span class="lbl">換電站</span><span class="val">12,000+ GoStation</span></div>
+      <div class="stat-row"><span class="lbl">訂閱用戶</span><span class="val">100 萬+</span></div>
+      <div class="stat-row"><span class="lbl">2024 銷量</span><span class="val">52,513 台（~65%）</span></div>
+      <div class="stat-row"><span class="lbl">財務狀況</span><span class="val" style="color:var(--brick)">持續虧損，股價跌 >90%</span></div>
+    </div>
+
+    <div class="abc-card benchmark">
+      <span class="abc-badge">B · Benchmark</span>
+      <h3>光陽 iONEX（KYMCO）</h3>
+      <div class="stat-row"><span class="lbl">母公司</span><span class="val">光陽工業，1963 年</span></div>
+      <div class="stat-row"><span class="lbl">電動品牌</span><span class="val">iONEX，2018 年發布</span></div>
+      <div class="stat-row"><span class="lbl">充電模式</span><span class="val">iONEX 車能網換電</span></div>
+      <div class="stat-row"><span class="lbl">2024 銷量</span><span class="val">17,763 台（~22%）</span></div>
+      <div class="stat-row"><span class="lbl">財務</span><span class="val" style="color:#2E8B57">換電部門損益兩平</span></div>
+      <div class="stat-row"><span class="lbl">定位</span><span class="val">親民價格 + 雙優勢</span></div>
+    </div>
+
+    <div class="abc-card competition">
+      <span class="abc-badge">C · Competition</span>
+      <h3>三陽工業（SYM）</h3>
+      <div class="stat-row"><span class="lbl">成立</span><span class="val">1954 年，老牌機車廠</span></div>
+      <div class="stat-row"><span class="lbl">電動系列</span><span class="val">E-WOO 輕型電動機車</span></div>
+      <div class="stat-row"><span class="lbl">充電模式</span><span class="val">可攜式電池（插充）</span></div>
+      <div class="stat-row"><span class="lbl">市場佔比</span><span class="val">&lt; 5%</span></div>
+      <div class="stat-row"><span class="lbl">財務</span><span class="val" style="color:#2E8B57">油車支撐，穩定獲利</span></div>
+      <div class="stat-row"><span class="lbl">目標客群</span><span class="val">換電站依賴度低者</span></div>
+    </div>
+  </div>
+
+  <!-- ABC 比較表 -->
+  <div class="section-headline fade-in" style="margin-top:3rem">
+    <h2 class="section-title">ABC 三方比較</h2>
+  </div>
+
+  <div class="rank-table-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>比較維度</th>
+          <th style="color:var(--navy)">A ▸ Gogoro</th>
+          <th style="color:#2E8B57">B ▸ 光陽 iONEX</th>
+          <th style="color:var(--amber)">C ▸ 三陽 SYM</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>充電方式</td><td>換電（GoStation）</td><td>換電（iONEX 車能網）</td><td>插充 / 攜充</td></tr>
+        <tr><td>2024 銷量</td><td class="positive">52,513 台</td><td>17,763 台</td><td class="negative">&lt; 5,000 台</td></tr>
+        <tr><td>市佔</td><td class="positive">~65%</td><td>~22%</td><td class="negative">&lt; 5%</td></tr>
+        <tr><td>商業模式</td><td>BaaS 訂閱制</td><td>換電訂閱制</td><td>傳統一次購買</td></tr>
+        <tr><td>財務健康</td><td class="negative">持續虧損</td><td class="positive">損益兩平（換電）</td><td class="positive">穩定獲利（有油車）</td></tr>
+        <tr><td>核心護城河</td><td>換電網絡密度</td><td>品牌 + 換電雙優勢</td><td>通路 + 品牌</td></tr>
+        <tr><td>最大挑戰</td><td>治理危機 + 高 CAPEX</td><td>市佔擴展速度</td><td>電動轉型緩慢</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ 03 策略九說 ═══ -->
+<section>
+  <div class="section-headline fade-in">
+    <div class="section-eyebrow">03</div>
+    <h2 class="section-title">策略九說分析</h2>
+    <p class="section-subtitle">六說框架深度解析</p>
+  </div>
+
+  <div class="nine-grid fade-in">
+    <div class="nine-card"><div class="nine-num">說 1</div><h4>價值說</h4><p class="nine-sub">差異化定位——換電體驗與訂閱綁定如何創造護城河？</p></div>
+    <div class="nine-card"><div class="nine-num">說 2</div><h4>資源說</h4><p class="nine-sub">VRIO 框架——核心資源的可持續競爭優勢評估</p></div>
+    <div class="nine-card"><div class="nine-num">說 3</div><h4>效率說</h4><p class="nine-sub">規模效應陷阱——規模擴大卻無法邊際成本遞減？</p></div>
+    <div class="nine-card"><div class="nine-num">說 4</div><h4>統治說</h4><p class="nine-sub">套牢風險雙面刃——用戶套牢與自身被套牢的兩難</p></div>
+    <div class="nine-card"><div class="nine-num">說 5</div><h4>生態說</h4><p class="nine-sub">紅皇后困境——k 策略企業在持續演化競爭中的壓力</p></div>
+    <div class="nine-card"><div class="nine-num">說 6</div><h4>風險說</h4><p class="nine-sub">黑天鵝衝擊——多重不可預期事件的連鎖效應</p></div>
+  </div>
+
+  <!-- 分析一 -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-tag"></i> 說 1 · 價值說</div>
+    <h3>差異化定位與轉換成本</h3>
+    <div class="grid grid-3" style="margin:1.2rem 0">
+      <div class="card" style="text-align:center">
+        <i class="ph ph-lightning" style="font-size:1.8rem;color:var(--navy)"></i>
+        <p style="font-weight:700;margin:0.5rem 0 0.3rem">換電體驗</p>
+        <p style="font-size:13px;color:var(--ink-muted)">60 秒換電消除充電焦慮，最根本的使用者價值主張</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <i class="ph ph-brain" style="font-size:1.8rem;color:var(--navy)"></i>
+        <p style="font-weight:700;margin:0.5rem 0 0.3rem">智慧連網生態</p>
+        <p style="font-size:13px;color:var(--ink-muted)">GoStation 電池數據 + SmartGEN AI，競爭者難以速成複製</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <i class="ph ph-lock" style="font-size:1.8rem;color:var(--navy)"></i>
+        <p style="font-weight:700;margin:0.5rem 0 0.3rem">訂閱制綁定</p>
+        <p style="font-size:13px;color:var(--ink-muted)">BaaS 訂閱期間高轉換成本，換廠牌等同放棄換電便利</p>
+      </div>
+    </div>
+    <p><strong>競品比較：</strong>換電網絡密度決定差異化成敗。Gogoro 台灣高密度 GoStation → 差異化完整體現；光陽正在快速佈建，差異化逐步建立；三陽插充模式缺乏換電便利性，差異化不足。</p>
+  </div>
+
+  <!-- 分析二 VRIO -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-shield-check"></i> 說 2 · 資源說</div>
+    <h3>VRIO 框架 — 護城河深度評估</h3>
+    <div class="rank-table-wrap" style="margin-top:1rem">
+      <table>
+        <thead>
+          <tr>
+            <th>核心資源</th>
+            <th>有價值 V</th>
+            <th>稀少 R</th>
+            <th>難模仿 I</th>
+            <th>組織支撐 O</th>
+            <th>競爭意涵</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>GoStation 換電網絡</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-partial">△</td><td>持久競爭優勢（規模不足則失效）</td></tr>
+          <tr><td>BaaS 訂閱商業模式</td><td class="v-yes">✓</td><td class="v-partial">△</td><td class="v-partial">△</td><td class="v-yes">✓</td><td>可複製，光陽已跟進</td></tr>
+          <tr><td>電池數據 + AI 演算法</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td><strong>最強護城河，數據不可複製</strong></td></tr>
+          <tr><td>品牌形象與信任</td><td class="v-yes">✓</td><td class="v-partial">△</td><td class="v-partial">△</td><td class="v-partial">△</td><td class="negative">治理危機已侵蝕品牌資本</td></tr>
+          <tr><td>創辦人個人影響力</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-yes">✓</td><td class="v-no">✗</td><td class="negative">核心風險——人治，非制度</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:0.8rem;font-size:13px;color:var(--ink-muted)">✓ 具備　△ 部分具備　✗ 不具備</p>
+  </div>
+
+  <!-- 分析三 效率說 -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-trend-up"></i> 說 3 · 效率說</div>
+    <h3>規模效應為何無法實現？</h3>
+    <p style="margin-bottom:1rem">理論預期：換電站固定成本由越多用戶分攤 → 邊際成本遞減 → 規模效益。但有三大障礙阻斷這條路：</p>
+    <div class="grid grid-3">
+      <div class="card" style="border-left:3px solid var(--brick)">
+        <p style="font-weight:700;color:var(--brick);margin-bottom:0.5rem">障礙 1｜前期 CAPEX 折舊</p>
+        <p style="font-size:13.5px;color:var(--ink-mid)">GoStation 建置成本高昂（14,000+ 電池格），每年折舊攤銷長期拖累損益，毛利率長期偏低甚至為負。</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--brick)">
+        <p style="font-weight:700;color:var(--brick);margin-bottom:0.5rem">障礙 2｜補助縮水</p>
+        <p style="font-size:13.5px;color:var(--ink-mid)">商業模式建立在政府補助維持擴張的假設上。2022 年後補助縮水，銷量驟降，換電站固定成本無法攤銷。</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--brick)">
+        <p style="font-weight:700;color:var(--brick);margin-bottom:0.5rem">障礙 3｜電池瘟疫</p>
+        <p style="font-size:13.5px;color:var(--ink-mid)">規模化本應帶來品質提升，但電池品質問題引發大規模召回與補償成本，逆轉學習曲線，抵銷效率紅利。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分析四 統治說 -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-arrows-left-right"></i> 說 4 · 統治說</div>
+    <h3>套牢效應（Hold-up）是雙面刃</h3>
+    <div class="holdup-grid" style="margin:1rem 0">
+      <div class="holdup-card holdup-good">
+        <h4><i class="ph ph-arrow-right" style="margin-right:5px"></i>用戶被 Gogoro 套牢 → 有利</h4>
+        <ul>
+          <li>購入 Gogoro 後依賴 GoStation 換電網絡</li>
+          <li>無法輕易換用其他品牌</li>
+          <li>BaaS 訂閱收入穩定性的來源</li>
+        </ul>
+      </div>
+      <div class="holdup-card holdup-bad">
+        <h4><i class="ph ph-arrows-clockwise" style="margin-right:5px"></i>Gogoro 被網路套牢 → 不利</h4>
+        <ul>
+          <li>被迫持續投入換電站 CAPEX</li>
+          <li>即便用戶萎縮也難以縮減網路規模</li>
+          <li>「賣方套牢」加劇財務壓力</li>
+        </ul>
+      </div>
+    </div>
+    <p><strong>供應鏈套牢：</strong>電池特殊設計 → 依賴特定供應商 → 「電池瘟疫」即為供應商套牢的典型案例。</p>
+  </div>
+
+  <!-- 分析五 生態說 -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-leaf"></i> 說 5 · 生態說</div>
+    <h3>k 策略與紅皇后困境</h3>
+    <div class="rk-grid" style="margin:1rem 0">
+      <div class="rk-card rk-r">
+        <h4>r 策略（非 Gogoro 路線）</h4>
+        <ul>
+          <li>快速繁殖、廣佈市場</li>
+          <li>低成本、搶占市占</li>
+          <li>犧牲深度換取廣度</li>
+        </ul>
+      </div>
+      <div class="rk-card rk-k">
+        <h4>k 策略（Gogoro 選擇的路線）</h4>
+        <ul>
+          <li>深度優化、精耕市場</li>
+          <li>強調品質與生態系深度</li>
+          <li>高投入換取長期護城河</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--brick);margin-top:1rem">
+      <p style="font-weight:700;color:var(--brick);margin-bottom:0.4rem">紅皇后效應（Red Queen Effect）</p>
+      <p style="font-size:13.5px;color:var(--ink-mid)"><strong>外部層次</strong>：光陽 iONEX 持續擴展換電網，三陽加速電動轉型。即便 Gogoro 技術領先，市占份額仍緩慢流失。<br>
+      <strong>內部層次</strong>：不投資 → 換電優勢消退；大量投資 → 加劇財務壓力。k 策略的深化與資本消耗之間形成無解矛盾。</p>
+    </div>
+  </div>
+
+  <!-- 分析六 風險說 -->
+  <div class="info-block fade-in">
+    <div class="ai-badge" style="background:rgba(27,42,74,0.08);color:var(--navy)"><i class="ph ph-warning"></i> 說 6 · 風險說</div>
+    <h3>黑天鵝連鎖效應（2022–2026）</h3>
+    <div class="timeline" style="margin-top:1.2rem">
+      <div class="t-item">
+        <div class="t-year">2022</div>
+        <div class="t-body">
+          <strong>政府補助縮水</strong>
+          <p>燃油車優惠延長，電動機車銷量驟降，換電站固定成本無法攤銷，財務惡化加速。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2023</div>
+        <div class="t-body">
+          <strong>電池瘟疫</strong>
+          <p>微處理器品質問題引發大規模召回，損害品牌形象，並造成龐大補償成本。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2024</div>
+        <div class="t-body">
+          <strong>公司治理危機</strong>
+          <p>創辦人陸學森違規擔保、獨立董事離職，外資信心崩潰，股價跌幅超過 90%。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2024</div>
+        <div class="t-body">
+          <strong>財務資訊揭露問題</strong>
+          <p>SEC 調查疑慮持續，資本市場對財務透明度的不信任進一步壓低估值。</p>
+        </div>
+      </div>
+      <div class="t-item">
+        <div class="t-year">2026</div>
+        <div class="t-body">
+          <strong>創辦人失聯傳聞</strong>
+          <p>陸學森傳欠款 1.5 億失聯，治理危機持續加深，企業信心雪上加霜。</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid var(--brick);margin-top:1rem">
+      <p style="font-size:13.5px;color:var(--ink-mid)"><strong>風險說啟示：</strong>企業應建立制度性隔絕機制（獨立供應鏈、獨立董事、風險委員會），而非僅靠精實運作。精實運作若缺乏風險緩衝，危機會超出承受能力。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 04 策略建議 ═══ -->
+<section>
+  <div class="section-headline fade-in">
+    <div class="section-eyebrow">04</div>
+    <h2 class="section-title">策略建議</h2>
+    <p class="section-subtitle">Gogoro 的四大轉型路徑</p>
+  </div>
+
+  <div class="rec-grid fade-in">
+    <div class="rec-card">
+      <span class="rec-num">01</span>
+      <h4>能源基礎設施升維</h4>
+      <ul>
+        <li>將換電網絡從「機車服務」升維為「都市能源基礎設施」</li>
+        <li>推進虛擬電廠整合，開拓 B2B 能源服務新市場</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="rec-num">02</span>
+      <h4>黑天鵝隔絕機制</h4>
+      <ul>
+        <li>強化供應鏈多元化，降低單一供應商依賴</li>
+        <li>設立獨立品質把關單位與完善獨立董事比例</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="rec-num">03</span>
+      <h4>r/k 策略動態平衡</h4>
+      <ul>
+        <li>台灣：k 策略深化換電核心優勢</li>
+        <li>海外（印度、東南亞）：r 策略輕資產授權模式（PBGN 延伸）</li>
+      </ul>
+    </div>
+    <div class="rec-card">
+      <span class="rec-num">04</span>
+      <h4>重建制度化治理</h4>
+      <ul>
+        <li>引入真正獨立的外部董事，建立接班與風險管理委員會</li>
+        <li>從「創業家人治」蛻變為「制度化治理」，恢復外資信心</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 05 結論 ═══ -->
+<section>
+  <div class="section-headline fade-in">
+    <div class="section-eyebrow">05</div>
+    <h2 class="section-title">結論與管理啟示</h2>
+  </div>
+
+  <div class="info-block fade-in" style="text-align:center;padding:2.5rem 2rem">
+    <p style="font-family:'Noto Serif TC',serif;font-size:1.25rem;font-weight:700;color:var(--ink);line-height:1.7;margin:0">
+      「創新模式的正確，不等於創新執行的成功。」
+    </p>
+  </div>
+
+  <div class="fade-in">
+    <div class="concl-item">
+      <div class="concl-num">1</div>
+      <div class="concl-body">
+        <h4>訂閱制的時間節奏至關重要</h4>
+        <p>BaaS 護城河需時間積累，但前期資本消耗必須有充足外部支撐。補助過早退場，時間會從盟友變成敵人。</p>
+      </div>
+    </div>
+    <div class="concl-item">
+      <div class="concl-num">2</div>
+      <div class="concl-body">
+        <h4>技術創新與治理創新必須同步</h4>
+        <p>換電技術走在前沿，公司治理卻停留在「創業家主導」前現代階段。治理危機往往比股價下跌更難修復。</p>
+      </div>
+    </div>
+    <div class="concl-item">
+      <div class="concl-num">3</div>
+      <div class="concl-body">
+        <h4>為黑天鵝建立制度性緩衝</h4>
+        <p>創新型企業必然遭遇衝擊，問題不在是否發生，而在組織能否度過。Gogoro 的教訓：精實運作若缺乏風險緩衝，危機會超出承受能力。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stat-strip fade-in" style="margin-top:2.5rem">
+    <div>
+      ABC 分析框架 · 策略九說六說 · 台灣電動機車產業 2024–2026
+    </div>
+    <div style="margin-top:0.5rem;font-size:0.85em;opacity:0.7">
+      <a href="IV.學期專案研究/Gogoro產業分析_ABC策略九說.pdf" style="color:inherit;text-decoration:underline;text-underline-offset:3px" target="_blank">
+        <i class="ph ph-file-pdf" style="margin-right:4px"></i>下載完整 PDF
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>學期個案研究</strong> · 114-2 企業創新管理 · 2026.06
+  <br><span style="color:var(--ink-muted);font-size:13px">國立臺北教育大學 · 數位二甲 · 徐丞睿</span>
+</footer>
+
+</body>
+</html>
