@@ -324,6 +324,63 @@ footer strong { color: var(--ink); }
 .proj-arrow { flex-shrink: 0; font-size: 1.3rem; color: var(--navy); opacity: 0.3; transition: opacity 0.2s, transform 0.2s; }
 .proj-card:hover .proj-arrow { opacity: 1; transform: translateX(4px); }
 @media (max-width: 600px) { .proj-card-inner { flex-direction: column; align-items: flex-start; } .proj-arrow { display: none; } }
+
+/* ── Hamburger Menu ── */
+.hb-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 10px;
+  border: 1px solid var(--border-heavy); background: transparent;
+  cursor: pointer; color: var(--ink); font-size: 1.15rem;
+  flex-shrink: 0; margin-left: 10px;
+  transition: background 0.18s, border-color 0.18s, color 0.18s;
+}
+.hb-btn:hover { background: var(--surface-2); color: var(--navy); border-color: rgba(27,42,74,0.3); }
+.hb-overlay {
+  position: fixed; inset: 0;
+  background: rgba(13,21,32,0.4); backdrop-filter: blur(2px);
+  z-index: 999; opacity: 0; pointer-events: none;
+  transition: opacity 0.28s;
+}
+.hb-overlay.open { opacity: 1; pointer-events: all; }
+.hb-panel {
+  position: fixed; top: 0; left: 0;
+  width: 270px; height: 100%; background: var(--bg);
+  border-right: 1px solid var(--border-heavy);
+  box-shadow: 6px 0 28px rgba(13,21,32,0.14);
+  z-index: 1000; overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  padding-bottom: 2.5rem;
+}
+.hb-panel.open { transform: translateX(0); }
+.hb-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.2rem; border-bottom: 1px solid var(--border-heavy);
+  position: sticky; top: 0; background: var(--bg); z-index: 1;
+}
+.hb-header-title { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-muted); }
+.hb-close {
+  width: 30px; height: 30px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem; color: var(--ink-mid); transition: background 0.15s;
+}
+.hb-close:hover { background: var(--surface-2); color: var(--ink); }
+.hb-group { padding: 1.1rem 1.2rem 0.3rem; }
+.hb-group-label { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.35rem; padding-left: 2px; }
+.hb-link {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 10px; border-radius: 8px;
+  text-decoration: none; color: var(--ink);
+  font-size: 13.5px; font-weight: 500;
+  transition: background 0.15s, color 0.15s; margin-bottom: 1px;
+}
+.hb-link:hover { background: var(--surface-2); color: var(--navy); }
+.hb-link.hb-active { background: rgba(27,42,74,0.09); color: var(--navy); font-weight: 700; }
+.hb-link .hb-icon { font-size: 0.95rem; opacity: 0.65; flex-shrink: 0; }
+.hb-link.hb-sub { padding-left: 2rem; font-size: 13px; }
+.hb-link.hb-sub .hb-icon { font-size: 0.85rem; }
+.hb-divider { height: 1px; background: var(--border); margin: 0.5rem 1.2rem; }
 </style>
 </head>
 <body>
