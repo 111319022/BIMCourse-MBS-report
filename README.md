@@ -1,77 +1,57 @@
 # MBS 商業模擬競賽成果報告 — 滴滴滴
 
-**114-2 企業創新管理· NTUE · 通識課 · 2026 春季**  
-MBS（Macro Business Simulation）商業儀表板模擬競賽，共 10 組參賽，**滴滴滴以 NPV 第一名完賽**。
+更新：本檔案已依專案實際檔案與運行方式重新整理（2026-06）。
+
+**課程**：114-2 企業創新管理 · NTUE（通識課）
+
+## 快速導覽
+
+- 線上展示： https://111319022.github.io/BIMCourse-MBS-report
+- 本專案為純靜態網站，直接以瀏覽器開啟或使用簡易 HTTP 伺服器檢視。
+
+如何在本機檢視：
+
+```bash
+# 建議（任一）
+open index.html            # macOS：以預設瀏覽器開啟
+python3 -m http.server 8000  # 在本目錄啟動簡易伺服器，然後瀏覽 http://localhost:8000
+```
+
+## 專案結構（重點檔案）
+
+- [index.html](index.html) — 首頁（Hero 統計與導覽）
+- [ranking.html](ranking.html) — 最終 NPV 排名與比較
+- [journey.html](journey.html) — 10 期損益、營收與市占走勢圖
+- [strategy.html](strategy.html) — 決策紀錄、定價與區域分析
+- [analysis.html](analysis.html) — 勝出歸因與改進建議
+- [conclusion.html](conclusion.html) — 管理洞察與學習心得
+- [data.js](data.js) — 所有競賽數據來源，供圖表與頁面使用
+- [script.js](script.js)、[style.css](style.css) — 全站 JS 與樣式
+
+資料夾：
+
+- I.筆記Docs/、II.彈性週HFM作業/、IV.學期專案研究/（課程與參考文件）
+
+## 技術與第三方資源
+
+- 圖表：Chart.js (v4)
+- 圖示：Phosphor Icons
+- 字體：Google Fonts（DotGothic16、Noto Serif TC、Noto Sans TC）
+- 架構：純 HTML / CSS / JavaScript（無建置工具）
+
+## 注意事項與已知問題
+
+- 內容與資料由 [data.js](data.js) 中管理，若要更新圖表資料請在該檔案編輯。
+- 專案為靜態頁面，**不需要編譯或 build 步驟**；若使用伺服器部署（GitHub Pages 等），直接將檔案發佈即可。
+
+## 如果你想做進一步修改
+
+- 更新資料：編輯 [data.js](data.js) 再重新載入頁面。
+- 調整樣式或互動：編輯 [style.css](style.css) 或 [script.js](script.js)。
+- 部署到 GitHub Pages：將 repo push 到 GitHub 並啟用 Pages（gh-pages 或 /docs 根目錄皆可）。
 
 ---
 
-## 線上瀏覽
+作者：滴滴滴 團隊
 
-> [https://111319022.github.io/BIMCourse-MBS-report](https://111319022.github.io/BIMCourse-MBS-report)
-
----
-
-## 最終成績
-
-| 指標 | 數值 |
-|---|---|
-| 最終排名 | **第 1 名（共 10 組）** |
-| NPV 凈現值 | **$2,740,705** |
-| 最終業主權益 | $9,461,087 |
-| 末期營業收入 | $5,760,000（全場最高） |
-| 末期市場占有率 | 14.50% |
-| NPV 折現率 | 8% |
-| 完賽期數 | 10 期（另有 3 組破產出局） |
-
----
-
-## 網站結構
-
-| 頁面 | 內容 |
-|---|---|
-| `index.html` | 首頁 — Hero 統計數字與頁面導覽 |
-| `ranking.html` | 最終 NPV 排名、各組投資策略比較 |
-| `journey.html` | 10 期損益、收益成長與市占率走勢圖 |
-| `strategy.html` | 第 6 期定價轉折點、決策全紀錄、地區分析 |
-| `analysis.html` | 勝出歸因 + 五大可改進之處（含第 9 期庫存失誤） |
-| `conclusion.html` | 六大企業管理洞察與課程學習心得 |
-
----
-
-## 致勝策略
-
-核心三角策略形成正向循環：
-
-1. **研發每期不間斷 $400,000**（全場最高且唯一 10 期皆投入），持續累積產品形象護城河
-2. **第 6 期大膽漲至最高定價 $9.00**，以 5 期研發打底的產品形象支撐溢價，四大市場同步執行
-3. **四市場均衡布局**，大陸港澳市占 18.66% 為主力，東北亞 15.21%，分散風險
-
-**結果**：10 期中 8 期獲利，累計獲利 +$2,361,078，業主權益全場最高。
-
----
-
-## 可以做得更好的地方
-
-- **第 9 期庫存歸零**：需求超出預期，末期庫存燒光，第 10 期期初無緩衝庫存，壓縮最終獲利
-- **第 10 期設備投資 $800k 時機錯誤**：設備效果遞延至下一期，競賽已結束，等同資金浪費
-- **東南亞行銷長期偏低**：P6–P8 僅投入 $40k vs 其他市場 $130k，最終市占為四市場最低
-- **定價轉換可以更早**：第 5 期已獲利 $582k，可提早在第 5 期就漲至 $9.00
-
----
-
-## 技術規格
-
-- **圖表**：[Chart.js 4.4.1](https://www.chartjs.org/)
-- **圖示**：[Phosphor Icons](https://phosphoricons.com/)
-- **字體**：Google Fonts — DotGothic16（像素風 Hero 標題）、Noto Serif TC、Noto Sans TC
-- **資料**：`data.js` 集中管理全部 10 期競賽數據
-- **主題**：暖色系紙質編輯風格（米白底、磚紅主色）
-- 純 HTML / CSS / JS，無框架，無建置工具
-
----
-
-## 課程資訊
-
-- **課程**：企業創新管理（Business Innovation Management）— NTUE通識課，114學年-下學期
-- **模擬系統**：MBS Level-2，由 [Top-BOSS](https://mbs.top-boss.com) 開發
-- **參賽隊名**：滴滴滴
+原始 MBS 數據與分析檔案見專案內容。若需我協助加入部署指示或自動化流程（例如 CI/CD 或 Netlify/GitHub Actions 範例），請告訴我。
