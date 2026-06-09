@@ -4,7 +4,7 @@
 
 ## 快速導覽
 
-- 線上展示： [https://111319022.github.io/BIMCourse-MBS-report](https://111319022.github.io/BIMCourse-report/)
+- 線上展示：https://111319022.github.io/BIMCourse-report/
 - 本專案為純靜態網站，直接以瀏覽器開啟或使用簡易 HTTP 伺服器檢視。
 
 如何在本機檢視：
