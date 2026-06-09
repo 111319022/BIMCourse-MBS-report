@@ -1,6 +1,4 @@
-# MBS 商業模擬競賽成果報告 — 滴滴滴
-
-更新：本檔案已依專案實際檔案與運行方式重新整理（2026-06）。
+# 114-2 企業創新管理 期末成果
 
 **課程**：114-2 企業創新管理 · NTUE（通識課）
 
@@ -43,15 +41,3 @@ python3 -m http.server 8000  # 在本目錄啟動簡易伺服器，然後瀏覽 
 
 - 內容與資料由 [data.js](data.js) 中管理，若要更新圖表資料請在該檔案編輯。
 - 專案為靜態頁面，**不需要編譯或 build 步驟**；若使用伺服器部署（GitHub Pages 等），直接將檔案發佈即可。
-
-## 如果你想做進一步修改
-
-- 更新資料：編輯 [data.js](data.js) 再重新載入頁面。
-- 調整樣式或互動：編輯 [style.css](style.css) 或 [script.js](script.js)。
-- 部署到 GitHub Pages：將 repo push 到 GitHub 並啟用 Pages（gh-pages 或 /docs 根目錄皆可）。
-
----
-
-作者：滴滴滴 團隊
-
-原始 MBS 數據與分析檔案見專案內容。若需我協助加入部署指示或自動化流程（例如 CI/CD 或 Netlify/GitHub Actions 範例），請告訴我。
