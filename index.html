@@ -56,9 +56,10 @@ nav {
 }
 .nav-content {
   max-width: 1080px; margin: 0 auto;
-  height: 100%; display: flex; align-items: center; justify-content: space-between;
+  height: 100%; display: flex; align-items: center; gap: 0;
   padding: 0 2.5rem;
 }
+.nav-content .nav-brand { flex: 1; }
 .nav-brand {
   font-family: 'Noto Serif TC', serif;
   font-weight: 700; font-size: 17px; color: var(--ink);
@@ -387,10 +388,8 @@ footer strong { color: var(--ink); }
 
 <nav>
   <div class="nav-content">
-    <a href="index.html" class="nav-brand">
-      <i class="ph-fill ph-graduation-cap" style="color:var(--brick)"></i>
-      企業創新管理 · 期末成果
-    </a>
+    <button class="hb-btn" id="hbBtn" aria-label="開啟選單"><i class="ph ph-list"></i></button>
+    <a href="index.html" class="nav-brand"><i class="ph-fill ph-graduation-cap" style="color:var(--amber)"></i> 企業創新管理</a>
     <div class="nav-links">
       <a href="#section-notes" data-section="notes">I. 筆記</a>
       <a href="#section-mbs"   data-section="mbs">II. MBS</a>
@@ -408,7 +407,7 @@ footer strong { color: var(--ink); }
   </div>
   <h1 class="fade-in">期末成果作業</h1>
   <p class="subtitle fade-in">Business Innovation Management · 2026 Spring</p>
-  <p class="student fade-in">數位二甲 &nbsp;徐丞睿</p>
+  <p class="student fade-in">數位二甲 &nbsp; 111319022 徐丞睿</p>
 
   <!-- 4 section quick links -->
   <div class="fade-in" style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">

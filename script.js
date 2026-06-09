@@ -106,22 +106,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('DOMContentLoaded', () => {
     document.body.insertAdjacentHTML('beforeend', html);
 
-    // Add ☰ button to nav
-    const nav = document.querySelector('.nav-content');
-    if (nav) {
-      const btn = document.createElement('button');
-      btn.className = 'hb-btn'; btn.id = 'hbBtn';
-      btn.setAttribute('aria-label', '開啟選單');
-      btn.innerHTML = '<i class="ph ph-list"></i>';
-      nav.prepend(btn);
-      btn.addEventListener('click', openMenu);
-    }
-
+    const btn = document.getElementById('hbBtn');
+    btn && btn.addEventListener('click', openMenu);
     document.getElementById('hbClose').addEventListener('click', closeMenu);
     document.getElementById('hbOverlay').addEventListener('click', closeMenu);
     document.querySelectorAll('.hb-link').forEach(l => l.addEventListener('click', closeMenu));
-
-    // Close on Escape
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   });
 
