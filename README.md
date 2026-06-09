@@ -28,7 +28,7 @@ python3 -m http.server 8000  # 在本目錄啟動簡易伺服器，然後瀏覽 
 
 資料夾：
 
-- I.筆記Docs/、II.彈性週HFM作業/、IV.學期專案研究/（課程與參考文件）
+- I_notes/、II_flex_HFM/、IV_project_research/（課程與參考文件，已改為 ASCII-safe 名稱）
 
 ## 技術與第三方資源
 
